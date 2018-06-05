@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "jake.friend.mapper.BoardMapper">
+
+<insert id = "create" parameterType="bbs">
+	insert into tb_bbs (b_title, b_content, u_name) values (#{b_title}, #{b_content}, #{u_name})
+</insert>
+
+<select id = "read" parameterType="int">
+	select b_seq, b_content, u_name, b_regdate from tb_bbs where b_seq = #{b_seq}
+</select>
+
+<update id = "update" parameterType="int">
+update tb_bbs set b_title = #{b_title}, b_content = #{b_content} where b_seq = #{b_seq}
+</update>
+
+<update id = "delete">
+update tb_bbs set b_stats = 1 where b_seq = #{b_seq}
+</update>
+
+<select id = "listAll" resultType="bbs">
+	select * from tb_bbs where b_seq != 1 order by b_seq desc, b_regdate desc
+</select>
+
+</mapper>
