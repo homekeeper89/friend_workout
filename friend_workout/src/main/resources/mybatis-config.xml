@@ -6,5 +6,6 @@
 <configuration>
 	<typeAliases>
 	<typeAlias alias="bbs" type = "jake.friend.domain.bbsVO"/>
+	<typeAlias alias="user" type = "jake.friend.domain.userVO"/>
 	</typeAliases>
 </configuration>

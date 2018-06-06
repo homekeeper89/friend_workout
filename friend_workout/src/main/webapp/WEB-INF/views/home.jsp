@@ -46,9 +46,7 @@
 <!-- header -->
 
 <main class="main-wrapper" id="container"> 
-  
   <!-- image Gallery -->
-  
   <div class="wrapper">
     <div class="">
       <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5 masonry">

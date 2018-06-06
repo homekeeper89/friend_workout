@@ -41,7 +41,47 @@
     </hgroup>
   </div>
 </header>
-<h1> hello</h1>
+<main class="main-wrapper" id="container"> 
+  <!-- image Gallery -->
+  <div class="wrapper">
+  	<form id = "user/post" action="/user" method = "POST">
+  	<div class = "row">
+  		<input type = "text" name = "email" id = "email" tabindex="1"
+  		placeholder = "이메일을 입력해주세요">
+  	</div>
+  	<div class = "row">
+  		<input type = "text" name = "u_name" id = "u_name" tabindex="2"
+  		placeholder = "닉네임을 입력해주세요">
+  	</div>
+  	<div class = "row">
+  		<input type = "password" name = "pwd" id = "pwd" tabindex="3"
+  		placeholder = "비밀번호를 입력해주세요">
+  	</div>
+  	<div class = "row">
+  		<input type = "number" name = "age" id = "age" tabindex="4"
+  		placeholder = "나이를 입력해주세요">
+  	</div>
+  	  	<div class = "row">
+  	  	<label for = "sex">성별을 선택하여주세요</label>
+  	  	<select name = "sex" id = "sex" tabindex = "5">
+  	  		<option value = "0"> 남자 </option>
+  	  		<option value = "1"> 여자 </option>
+  	  	</select>
+  	</div>
+  	<div class = "row">
+  		<input type = "number" name = "weight" id = "weight" tabindex="6"
+  		placeholder = "키를 입력해주세요">
+  	</div>
+  	<div class = "row">
+  		<input type = "number" name = "height" id = "height" tabindex="7"
+  		placeholder = "몸무게를 입력해주세요">
+  	</div>
+  	<div class = "row">
+  		<input type = "submit" value = "제출">
+  	</div>
+  	</form>
+  </div>
+</main>
 </body>
 <jsp:include page="../inc/footter.jsp"></jsp:include>
 </html>
