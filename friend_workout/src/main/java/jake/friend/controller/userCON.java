@@ -2,27 +2,37 @@ package jake.friend.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import jake.friend.domain.userVO;
+import jake.friend.persistence.userDAOImpl;
 import jake.friend.test.userCONtest;
 
+/**
+ * Copyright : homekeeper89@gmail.com
+ * 
+ */
 @Controller
+@RequestMapping(value = "/users")
 public class userCON {
 	
 	private static final Logger logger = LoggerFactory.getLogger(userCON.class);
 	
-	@RequestMapping(value = "/user", method= RequestMethod.GET)
+	@Autowired
+	private userDAOImpl dao;
+	
+	@RequestMapping(value = "", method= RequestMethod.GET)
 	public String register() {
-		logger.info("userGet");
 		return "register";
 	}
 	
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public String register(userVO vo) {
-		
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public String register(userVO vo) throws Exception{
+		int num = dao.create(vo);
+		logger.info("res " + num);
 		return "home";
 	}
 

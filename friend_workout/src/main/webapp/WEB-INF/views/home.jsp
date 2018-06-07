@@ -46,6 +46,22 @@
 <!-- header -->
 
 <main class="main-wrapper" id="container"> 
+<div id = "upload-modal">
+	<h3> file upload</h3>
+	<div class = "modal-dialog">
+		<div class = "modal-content">
+			<div class = "modal-header">
+				<h4> upload</h4>
+			</div>
+			<div class = "modal-body">
+				<h3> modal body</h3>
+			</div>
+			<div class = "modal-footer">
+				<h3> modal foot</h3>
+			</div>
+		</div>
+	</div>
+</div>
   <!-- image Gallery -->
   <div class="wrapper">
     <div class="">

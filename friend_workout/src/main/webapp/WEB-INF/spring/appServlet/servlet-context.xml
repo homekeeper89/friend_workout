@@ -21,6 +21,15 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean id = "all_inter" class = "jake.friend.interceptor.interAll">
+	</beans:bean> 
+	
+	<interceptors>
+		<interceptor>
+			<mapping path = "/**"></mapping>
+			<beans:ref bean = "all_inter"/>
+		</interceptor>
+	</interceptors>
 	<context:component-scan base-package="jake.friend.controller" />
 	
 	

@@ -38,5 +38,4 @@ public class userCONtest {
 	public void testCon() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/user"));
 	}
-	
 }

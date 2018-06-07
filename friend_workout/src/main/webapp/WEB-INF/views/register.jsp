@@ -44,7 +44,7 @@
 <main class="main-wrapper" id="container"> 
   <!-- image Gallery -->
   <div class="wrapper">
-  	<form id = "user/post" action="/user" method = "POST">
+  	<form id = "user/post" action="/users" method = "POST">
   	<div class = "row">
   		<input type = "text" name = "email" id = "email" tabindex="1"
   		placeholder = "이메일을 입력해주세요">

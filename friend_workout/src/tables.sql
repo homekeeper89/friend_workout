@@ -43,3 +43,7 @@ create table tb_file(
 
 alter table tb_reply add constraint fk_r_writer foreign key(u_name) references tb_user(u_name);
 alter table tb_file add constraint fk_f_bseq foreign key(b_seq) references tb_bbs(b_seq);
+
+alter table tb_user modify email varchar(50);
+
+select * from tb_user;

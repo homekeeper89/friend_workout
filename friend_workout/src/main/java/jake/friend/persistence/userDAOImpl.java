@@ -17,8 +17,10 @@ public class userDAOImpl implements userDAO {
 	private static String namespace = "jake.friend.mapper.userMapper";
 	
 	@Override
-	public void create(userVO vo) throws Exception {
-		session.insert(namespace + ".create", vo);
+	public int create(userVO vo) throws Exception {
+		int num = session.insert(namespace + ".create", vo);
+		int res = num!= 0? 1:0;
+		return res;
 	}
 
 	@Override
