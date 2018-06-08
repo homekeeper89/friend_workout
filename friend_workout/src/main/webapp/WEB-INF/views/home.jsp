@@ -1,8 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
 <html>
-
-<html class="no-js">
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
 <meta charset="utf-8">
@@ -42,26 +41,12 @@
     </hgroup>
   </div>
 </header>
-
-<!-- header -->
-
-<main class="main-wrapper" id="container"> 
-<div id = "upload-modal">
-	<h3> file upload</h3>
-	<div class = "modal-dialog">
-		<div class = "modal-content">
-			<div class = "modal-header">
-				<h4> upload</h4>
-			</div>
-			<div class = "modal-body">
-				<h3> modal body</h3>
-			</div>
-			<div class = "modal-footer">
-				<h3> modal foot</h3>
-			</div>
-		</div>
-	</div>
-</div>
+<!-- header end -->
+<button type="button" class="btn btn-info btn-lg" id="workingout">YourSelf</button><!--  modal 버튼 -->
+<!-- modal start --> 
+	<jsp:include page="../inc/upload-modal.jsp"/>
+<!-- modal end -->
+<main class="main-wrapper" id="container">
   <!-- image Gallery -->
   <div class="wrapper">
     <div class="">
@@ -243,7 +228,15 @@
 <script src="/resources/js/gallery/imagesloaded.pkgd.min.js" type="text/javascript"></script> 
 <script src="/resources/js/gallery/jquery.infinitescroll.min.js" type="text/javascript"></script> 
 <script src="/resources/js/gallery/main.js" type="text/javascript"></script> 
-<script src="/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>
+<script src="/resources/js/jquery.nicescroll.min.js" type="text/javascript"></script>    
+<script>
+$(function(){
+    $("#workingout").click(function(){
+        $("#upload-modal").modal();
+    });
+});
+</script>
+
 </body>
 
 </html>
