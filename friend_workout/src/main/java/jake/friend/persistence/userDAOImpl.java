@@ -22,6 +22,11 @@ public class userDAOImpl implements userDAO {
 		int res = num!= 0? 1:0;
 		return res;
 	}
+		 
+	@Override
+	public userVO login(userVO vo) throws Exception {
+		return session.selectOne(namespace + ".login", vo);
+	}
 
 	@Override
 	public userVO read(int b_seq) throws Exception {

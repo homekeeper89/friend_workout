@@ -26,11 +26,18 @@
 
 	<beans:bean id="all_inter" class="jake.friend.interceptor.interAll">
 	</beans:bean>
-
+	<beans:bean id="login_inter" class="jake.friend.interceptor.interLogin">
+	</beans:bean>
+	<!-- bean 여러개 등록 어케 하지 -->
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"></mapping>
 			<beans:ref bean="all_inter" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/users/sessions"></mapping>
+			<beans:ref bean="login_inter" />
 		</interceptor>
 	</interceptors>
 	<context:component-scan base-package="jake.friend.controller" />

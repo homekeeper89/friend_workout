@@ -11,5 +11,5 @@ public interface userDAO {
 	public void update(userVO vo) throws Exception;
 	public void delete(int b_seq) throws Exception;
 	public List<userVO> listAll() throws Exception;
-
+	public userVO login(userVO vo) throws Exception;
 }

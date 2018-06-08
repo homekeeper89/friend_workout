@@ -1,9 +1,12 @@
 package jake.friend.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,5 +38,18 @@ public class userCON {
 		logger.info("res " + num);
 		return "home";
 	}
-
+	
+	@RequestMapping(value = "/sessions", method = RequestMethod.GET)
+	public String sessionGet() throws Exception{
+		return "login";
+	}
+	
+	@RequestMapping(value = "/sessions", method = RequestMethod.POST)
+	public void sessionGet(userVO vo, HttpSession session, Model model) throws Exception{
+		userVO res = dao.login(vo);
+		if (res == null) {
+			return ; // return 값 줘야할거같은데..
+		}
+		model.addAttribute("userVO", res);
+	}
 }
