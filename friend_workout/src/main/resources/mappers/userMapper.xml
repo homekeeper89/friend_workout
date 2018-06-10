@@ -11,9 +11,10 @@
 </insert>
 
 <select id = "login" resultType="user">
-	select u_name, sex, age, height, weight from tb_user
-	where (email = #{email} and pwd = #{pwd}) 
+	select u_seq,u_name, sex, age, height, weight from tb_user
+	where email = #{email} and pwd = #{pwd} 
 	and u_status != 1
 </select>
+
 
 </mapper>

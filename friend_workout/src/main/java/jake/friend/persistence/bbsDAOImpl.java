@@ -16,6 +16,11 @@ public class bbsDAOImpl implements bbsDAO {
 	private SqlSession session;
 	
 	@Override
+	public void addAttach(String fullName) throws Exception {
+		session.insert("addAttach", fullName);
+		
+	}
+	@Override
 	public void create(bbsVO vo) throws Exception {
 		session.insert("create", vo);
 		
@@ -42,7 +47,6 @@ public class bbsDAOImpl implements bbsDAO {
 	public List<bbsVO> listAll() throws Exception {
 		return session.selectList("listAll");
 	}
-	
-	
+
 
 }

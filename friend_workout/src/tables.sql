@@ -47,3 +47,5 @@ alter table tb_file add constraint fk_f_bseq foreign key(b_seq) references tb_bb
 alter table tb_user modify email varchar(50);
 
 select * from tb_user;
+
+select * from tb_user where email = 'wkdgndldi@naver.com' and pwd = '1';

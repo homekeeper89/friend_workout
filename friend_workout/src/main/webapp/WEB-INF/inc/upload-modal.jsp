@@ -13,6 +13,7 @@
           <p>Upload your pic</p>
           <form id = "modal-pic" action = "/files" method = "post" enctype = "multipart/form-data">
           	<input type = 'file' name = 'file'>
+          	<input type = "hidden" name = "u_name" value = "${login.u_name}">
           	<input type = 'submit' value = 'send'>
           </form>
         </div>	

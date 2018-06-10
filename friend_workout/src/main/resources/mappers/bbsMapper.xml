@@ -25,4 +25,9 @@ update tb_bbs set b_stats = 1 where b_seq = #{b_seq}
 	select * from tb_bbs where b_seq != 1 order by b_seq desc, b_regdate desc
 </select>
 
+
+<insert id = "addAttach">
+	insert into tb_file(f_path, b_seq) values (#{fullName}, LAST_INSERT_ID());
+</insert>
+
 </mapper>

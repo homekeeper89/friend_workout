@@ -10,5 +10,6 @@ public interface bbsDAO {
 	public void update(bbsVO vo) throws Exception;
 	public void delete(int b_seq) throws Exception;
 	public List<bbsVO> listAll() throws Exception;
+	public void addAttach(String fullNmae) throws Exception; // file 저장을 위해
 
 }

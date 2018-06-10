@@ -28,6 +28,8 @@
 	</beans:bean>
 	<beans:bean id="login_inter" class="jake.friend.interceptor.interLogin">
 	</beans:bean>
+	<beans:bean id = "auth_inter" class = "jake.friend.interceptor.AuthoInterceptor">
+	</beans:bean>
 	<!-- bean 여러개 등록 어케 하지 -->
 	
 	<interceptors>
@@ -38,6 +40,10 @@
 		<interceptor>
 			<mapping path="/users/sessions"></mapping>
 			<beans:ref bean="login_inter" />
+		</interceptor>
+		<interceptor>
+			<mapping path = "/files"></mapping>
+			<beans:ref bean = "auth_inter"></beans:ref>
 		</interceptor>
 	</interceptors>
 	<context:component-scan base-package="jake.friend.controller" />

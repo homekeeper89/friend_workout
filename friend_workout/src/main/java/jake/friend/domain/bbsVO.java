@@ -10,7 +10,7 @@ public class bbsVO {
 	private String b_content;
 	private Date b_regdate;
 	private int b_status;
-	
+	private String[] files; // file 저장을 위해 만든 변수
 	
 	
 	public int getB_seq() {

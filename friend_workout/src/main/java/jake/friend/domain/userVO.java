@@ -122,7 +122,7 @@ public class userVO {
 
 	@Override
 	public String toString() {
-		return "userVO [u_seq=" + u_seq + ", eamil=" + email + ", u_name=" + u_name + ", pwd=" + pwd + ", sex=" + sex
+		return "userVO [u_seq=" + u_seq + ", email=" + email + ", u_name=" + u_name + ", pwd=" + pwd + ", sex=" + sex
 				+ ", age=" + age + ", height=" + height + ", weight=" + weight + ", u_status=" + u_status + "]";
 	}
 
