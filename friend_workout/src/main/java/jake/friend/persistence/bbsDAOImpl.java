@@ -17,6 +17,7 @@ public class bbsDAOImpl implements bbsDAO {
 	private SqlSession session;
 	private static String namespace = "jake.friend.mapper.BoardMapper";
 	
+	
 	@Override
 	public void addAttach(String fullName) throws Exception {
 		session.insert(namespace + ".addAttach", fullName);
