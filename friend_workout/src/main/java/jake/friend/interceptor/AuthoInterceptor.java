@@ -27,7 +27,7 @@ public class AuthoInterceptor extends HandlerInterceptorAdapter{
 		
 		if(session.getAttribute("login") == null) {
 			logger.info("current user is not logined");
-			response.sendRedirect("/users/sessions");
+			response.sendRedirect("/users/session");
 			return false;
 		}
 		return true;	

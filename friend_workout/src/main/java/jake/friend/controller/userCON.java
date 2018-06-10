@@ -48,8 +48,7 @@ public class userCON {
 	public void sessionGet(userVO vo, HttpSession session, Model model) throws Exception{
 		userVO res = dao.login(vo);
 		if (res == null || res.getU_name() == null) {
-			System.out.println("res2 " + res);
-			return ; // return 값 줘야할거같은데..
+			return ;
 		}
 		model.addAttribute("userVO", res);
 		
