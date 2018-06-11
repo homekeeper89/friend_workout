@@ -40,4 +40,10 @@ public class uploadCON {
 		bss.regist(vo);
 		return "home";
 	}
+	
+	@RequestMapping(value = "/files", method = RequestMethod.GET)
+	public String uploadForm() {
+		return "getfiles";
+		
+	}
 }

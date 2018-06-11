@@ -29,7 +29,6 @@
     <![endif]-->
 <script src="/resources/js/assets/modernizr-2.8.3.min.js" type="text/javascript"></script>
 </head>
-
 <body>
 <!-- header -->
 <header id="header" class="header">

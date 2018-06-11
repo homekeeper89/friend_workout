@@ -36,11 +36,11 @@ public class uploadFileUtils {
 		Calendar cal = Calendar.getInstance(); // 현재 날짜 정보
 		String yearPath = File.separator + cal.get(Calendar.YEAR); // \ + 년도
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH)+1);
-		// monthPath
-		String datePath = monthPath + File.separator + new DecimalFormat("00").format(Calendar.DATE);
+		// monthPaths
+		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
 		// 총 3개의 폴더 외곽 을 생성
 		makeDir(uploadPath, yearPath, monthPath, datePath);
-		
+		logger.info("month" + monthPath);
 		logger.info(datePath); // 최종 경로
 		return datePath;
 	}
@@ -52,6 +52,7 @@ public class uploadFileUtils {
 		for (String path:paths) {
 			File dirPath = new File(uploadPath + path);
 			// 년 > 월 > 일 순으로 경로를 생성하기 위함, 따라서 중간에 같은 년, 같은 월이 존재하면 만들지 않는다.
+			logger.info(path);
 			if(!dirPath.exists()) {
 				dirPath.mkdirs();
 			}

@@ -29,6 +29,7 @@
 			<li><a href="about.html">About</a></li>
 			<li><a href="/users">register</a></li>
 			<li><a href="/users/session">login</a></li>
+			<li><a href="/files">test</a></li>
 			<li><a href="contact.html">contact</a></li>
 		</ul>
 	</div>

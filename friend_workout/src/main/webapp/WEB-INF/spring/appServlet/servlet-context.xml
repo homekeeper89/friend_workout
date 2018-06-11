@@ -15,6 +15,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<!-- <resources mapping="/img/*" location="/img/" /> --> <!--  외부 경로를 불러오기 위함 -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -54,10 +55,9 @@
 		<beans:property name="maxUploadSize" value="100000000" />
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<!-- <beans:constructor-arg value="G:\\friend\workingout" /> -->
-		<beans:constructor-arg value = "C:\\friend\workingout"></beans:constructor-arg>
+		<beans:constructor-arg value="G:\\friend\workingout"/> 
+		<!-- <beans:constructor-arg value = "C:\\friend\workingout"></beans:constructor-arg> -->
 	</beans:bean>
 	<!--  file upload -->
-
 
 </beans:beans>
