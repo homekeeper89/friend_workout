@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import jake.friend.domain.bbsVO;
 
@@ -14,15 +15,18 @@ public class bbsDAOImpl implements bbsDAO {
 
 	@Inject // inject는 자바것
 	private SqlSession session;
+	private static String namespace = "jake.friend.mapper.BoardMapper";
+	
 	
 	@Override
 	public void addAttach(String fullName) throws Exception {
-		session.insert("addAttach", fullName);
+		session.insert(namespace + ".addAttach", fullName);
 		
 	}
+	
 	@Override
 	public void create(bbsVO vo) throws Exception {
-		session.insert("create", vo);
+		session.insert(namespace + ".create", vo);
 		
 	}
 	@Override

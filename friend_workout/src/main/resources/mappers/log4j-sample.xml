@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="Appender1" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%-5p %d{yyyy-MM-dd HH:mm} method:[%m] /class:[%c{2}] //[%t][%x][%n]" />
+		</layout>
+	</appender>
+
+	<appender name="Appender2" class="org.apache.log4j.FileAppender">
+		<param name="File" value="C:/Logs/SpringMVC2.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="LOGFILE-DAILY" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="C:/Logs/test-daily.log" />
+		<param name="Append" value="true" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %-17c{2} (%13F:%L) %3x - %m%n" />
+		</layout>
+	</appender>
+
+
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="Appender1" />
+		<appender-ref ref="Appender2" />
+	</root>
+
+</log4j:configuration>
