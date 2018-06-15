@@ -10,8 +10,17 @@
 </head>
 <body>
 <h3> hello</h3>
-<div class="textView1"></div>
-<script>
+<div class="textView1">
+<h3> what</h3>
+	<c:forEach items="${fdata}" var="data" varStatus="cnt">
+	<h2> ${data.value}</h2>
+	<img src = "data:image/jpeg;base64,${data.value}" alt="..." width="200" height="200" />
+	<img src="data:image/jpg;base64,<c:out value='${data.value}'/>" />
+	<img src="data:image/jpg;base64,${data.value}">
+	<h2> hell</h2>
+    </c:forEach>
+</div>
+<!-- <script>
  $(document).ready(function() {
 	$.ajax({
 	url: '/uploadajax',
@@ -29,7 +38,7 @@
 		}
 	);
 
-});
+}); -->
 </script>
 </body>
 </html>

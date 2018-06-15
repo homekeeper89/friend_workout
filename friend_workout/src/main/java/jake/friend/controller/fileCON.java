@@ -3,70 +3,59 @@ package jake.friend.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
-import jake.friend.domain.bbsVO;
-import jake.friend.persistence.bbsDAOImpl;
-import jake.friend.persistence.bbsService;
+import jake.friend.domain.fileVO;
+import jake.friend.persistence.fileDAOimpl;
 import jake.friend.util.MediaUtils;
-import jake.friend.util.uploadFileUtils;
 
 @Controller
-public class uploadCON {
-	private static final Logger logger = LoggerFactory.getLogger(uploadCON.class);
+public class fileCON {
+	private static Logger logger = Logger.getLogger(fileCON.class);
 	
 	@Autowired
-	private bbsService bss;
+	private fileDAOimpl dao;
 	
 	@Resource(name = "uploadPath") // sevelet-context에 등록되어 있음
 	private String uploadPath;
 	
-	@RequestMapping(value = "/files", method = RequestMethod.POST)
-	public String uploadForm(MultipartFile file, Model model, bbsVO vo) throws Exception{
-		logger.info("originalName" + file.getOriginalFilename());
-		String path  = uploadFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-		logger.info("after uploaddd " +path);
-		logger.info("after " + vo.getU_name());
-		vo.setFiles(path);
-		bss.regist(vo);
-		return "home";
-	}
 	
-	//@RequestMapping(value = "/files", method = RequestMethod.GET)
-	public String uploadForm() {
-		return "getfiles";
-		
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value="/uploadajax", method=RequestMethod.POST)
-	public String uploadAjax(MultipartFile file) throws Exception {
-		
-		return "/2018/06/14/s_a0246319-fb5b-4c24-8e94-9f66995f06d5_KakaoTalk_20180614_132151577.jpg";
-		
+	@RequestMapping(value = "/files", method = RequestMethod.GET)
+	public ModelAndView getFils() throws Exception{
+		List<fileVO> flst = dao.getFiles();
+		HashMap<Integer, ResponseEntity<byte[]>> fdata = new HashMap();
+		for(fileVO v : flst) {
+			File file = new File(uploadPath + v.getF_path());
+			if(!file.exists()) {
+				continue;
+			}
+			logger.info("f_path" + v.getF_path());
+			fdata.put(v.getB_seq(), displayFile(v.getF_path()));
+			logger.info("type" +  displayFile(v.getF_path()).getClass());
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("getfiles");
+		mv.addObject("fdata", fdata);
+		return mv;
 	}
 	
 	@ResponseBody
-	@RequestMapping("/displayfile")
 	public ResponseEntity<byte[]> displayFile(String fileName)throws Exception{
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
@@ -100,4 +89,5 @@ public class uploadCON {
 			return entity;
 		
 	}
+
 }
