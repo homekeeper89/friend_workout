@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <!DOCTYPE>
 <html>
 <head>
@@ -14,9 +15,9 @@
 <h3> what</h3>
 	<c:forEach items="${fdata}" var="data" varStatus="cnt">
 	<h2> ${data.value}</h2>
-	<img src = "data:image/jpeg;base64,${data.value}" alt="..." width="200" height="200" />
-	<img src="data:image/jpg;base64,<c:out value='${data.value}'/>" />
-	<img src="data:image/jpg;base64,${data.value}">
+	<h2> ${data.value.f_path}</h2>
+	<img src = "/display?name=${data.value.f_path}"/>
+	<img src="<spring:url value='/image/hoya.jpg'/>" />
 	<h2> hell</h2>
     </c:forEach>
 </div>

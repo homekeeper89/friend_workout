@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,8 +17,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -39,15 +42,19 @@ public class fileCON {
 	@RequestMapping(value = "/files", method = RequestMethod.GET)
 	public ModelAndView getFils() throws Exception{
 		List<fileVO> flst = dao.getFiles();
-		HashMap<Integer, ResponseEntity<byte[]>> fdata = new HashMap();
+		Map<Integer, fileVO> fdata = new HashMap();
+		/*HashMap<Integer, ResponseEntity<byte[]>> fdata = new HashMap();*/
 		for(fileVO v : flst) {
 			File file = new File(uploadPath + v.getF_path());
 			if(!file.exists()) {
 				continue;
 			}
-			logger.info("f_path" + v.getF_path());
-			fdata.put(v.getB_seq(), displayFile(v.getF_path()));
-			logger.info("type" +  displayFile(v.getF_path()).getClass());
+			//logger.info(v.getF_path().substring(1));
+			//logger.info("f_path" + v.getF_path());
+			//v.setF_path(v.getF_path().substring(1));
+			fdata.put(v.getB_seq(), v);
+			/*fdata.put(v.getB_seq(), displayFile(v.getF_path()));
+			logger.info("type" +  displayFile(v.getF_path()).getClass());*/
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("getfiles");
@@ -55,11 +62,10 @@ public class fileCON {
 		return mv;
 	}
 	
-	@ResponseBody
-	public ResponseEntity<byte[]> displayFile(String fileName)throws Exception{
+	@RequestMapping(value = "/display", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> displayFile(@RequestParam("name") String fileName)throws Exception{
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
-		
 		logger.info("FILE NAME : " + fileName);
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
