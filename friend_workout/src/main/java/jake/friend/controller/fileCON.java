@@ -39,7 +39,7 @@ public class fileCON {
 	private String uploadPath;
 	
 	
-	@RequestMapping(value = "/files", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView getFils() throws Exception{
 		List<fileVO> flst = dao.getFiles();
 		Map<Integer, fileVO> fdata = new HashMap();
@@ -49,18 +49,15 @@ public class fileCON {
 			if(!file.exists()) {
 				continue;
 			}
-			//logger.info(v.getF_path().substring(1));
-			//logger.info("f_path" + v.getF_path());
-			//v.setF_path(v.getF_path().substring(1));
 			fdata.put(v.getB_seq(), v);
-			/*fdata.put(v.getB_seq(), displayFile(v.getF_path()));
-			logger.info("type" +  displayFile(v.getF_path()).getClass());*/
+			logger.info("f_regdate :" + v.getF_regdate());
 		}
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("getfiles");
+		mv.setViewName("index");
 		mv.addObject("fdata", fdata);
 		return mv;
 	}
+	// 저장되어있는 파일을 가져온다.
 	
 	@RequestMapping(value = "/display", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> displayFile(@RequestParam("name") String fileName)throws Exception{

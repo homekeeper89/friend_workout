@@ -28,6 +28,9 @@ import jake.friend.persistence.bbsDAOImpl;
 import jake.friend.persistence.bbsService;
 import jake.friend.util.MediaUtils;
 import jake.friend.util.uploadFileUtils;
+/* copyright by : homekeeper89@gmail.com
+ * Controller about Upload function
+ */
 
 @Controller
 public class uploadCON {
@@ -47,57 +50,7 @@ public class uploadCON {
 		logger.info("after " + vo.getU_name());
 		vo.setFiles(path);
 		bss.regist(vo);
-		return "home";
+		return "redirect:" + "/";
 	}
-	
-	//@RequestMapping(value = "/files", method = RequestMethod.GET)
-	public String uploadForm() {
-		return "getfiles";
-		
-	}
-	
-	
-	@ResponseBody
-	@RequestMapping(value="/uploadajax", method=RequestMethod.POST)
-	public String uploadAjax(MultipartFile file) throws Exception {
-		
-		return "/2018/06/14/s_a0246319-fb5b-4c24-8e94-9f66995f06d5_KakaoTalk_20180614_132151577.jpg";
-		
-	}
-	
-	@ResponseBody
-	@RequestMapping("/displayfile")
-	public ResponseEntity<byte[]> displayFile(String fileName)throws Exception{
-		InputStream in = null;
-		ResponseEntity<byte[]> entity = null;
-		
-		logger.info("FILE NAME : " + fileName);
-		try {
-			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
-			MediaType mType = MediaUtils.getMediaType(formatName);
-			HttpHeaders headers = new HttpHeaders();
-			in = new FileInputStream(uploadPath+fileName);
-			
-			//step: change HttpHeader ContentType
-			if(mType != null) {
-				//image file(show image)
-				headers.setContentType(mType);
-			}else {
-				//another format file(download file)
-				fileName = fileName.substring(fileName.indexOf("_")+1);//original file Name
-				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-				headers.add("Content-Disposition", "attachment; filename=\"" + new String(fileName.getBytes("UTF-8"), "ISO-8859-1")+"\""); 
-			}
-			
-			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-		}finally {
-			in.close();
-		}
-			return entity;
-		
-	}
+	// 파일 업로드 할 경우 작동되는 컨트롤러, 업로드가 성공하면 home으로 움지인다.
 }

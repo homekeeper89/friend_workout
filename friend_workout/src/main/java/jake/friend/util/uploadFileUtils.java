@@ -26,9 +26,12 @@ public class uploadFileUtils {
 		String savedPath = calcPath(uploadPath);
 		File target = new File(uploadPath + savedPath, savedName);
 		FileCopyUtils.copy(fileData, target);
-		String uploadedFileName = makeThumnail(uploadPath, savedPath, savedName);
-		// 사진만 올리게 하기 위해선
-		return uploadedFileName;
+		//String uploadedFileName = makeThumnail(uploadPath, savedPath, savedName); 
+		// 06.16 썸네일로 만들어서 저장을 하고 게시판에 뿌리니 화질이 너무떨어짐. 원본 그대로 해야함
+		String uploadedFileName = uploadPath+ savedPath+ "\\" + savedName;
+		logger.info("uploadname : " + 
+		uploadedFileName.substring(uploadPath.length()).replace(File.separatorChar, '/'));
+		return uploadedFileName.substring(uploadPath.length()).replace(File.separatorChar, '/');
 	}
 	
 	// making folder
