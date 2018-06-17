@@ -10,8 +10,9 @@
       
       <!-- logo -->
       
-      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"> <img src="/resources/images/footer-logo.png" alt="Picxa" title="Picxa"/>
-        <p class="copy-right">&copy; Reserved Picxa inc 2016.</p>
+      <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3"> <!-- <img src="/resources/images/footer-logo.png" alt="Picxa" title="Picxa"/> -->
+        <p class="copy-right">&copy; Reserved jake, homekeeper89</p>
+        <p class="copy-right">&copy; visit my blog -> <a href="http://antananarivo.tistory.com/"> Click me</p>
       </div>
       
       <!-- logo --> 
@@ -20,8 +21,7 @@
       
       <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
         <address>
-        <p>200 Broadway Av</p>
-        <p>West Beach SA 5024  Australia</p>
+        <p>wanna be junior Developer</p>
         </address>
       </div>
       
@@ -30,8 +30,8 @@
       <!-- email -->
       
       <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
-        <p><a href="mailto:contact@Picxa.com">contact@Picxa.com</a></p>
-        <p>01 (2) 34 56 78</p>
+        <p><a href="mailto:contact@Picxa.com">homekeeper89@gmail.com</a></p>
+        <p>kakaoId: wkdgndldi</p>
       </div>
       
       <!-- email --> 
@@ -40,12 +40,10 @@
       
       <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 padding-top">
         <ul class="social">
-          <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-          <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li>
-          <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-          <li><a href="#"><i class="fa fa-tripadvisor" aria-hidden="true"></i></a></li>
-          <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-          <li><a href="#"><i class="fa fa-delicious" aria-hidden="true"></i></a></li>
+         <!--  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li> -->
+         <!--  <li><a href="#"><i class="fa fa-flickr" aria-hidden="true"></i></a></li> -->
+          <!-- <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li> -->
+          <li><a href="https://github.com/homekeeper89"><i class="fa fa-github" aria-hidden="true"></i></a></li>
         </ul>
         <p class="made-by">Made with by <i class="fa fa-heart" aria-hidden="true"></i> <a href="http://www.designstub.com/" target="_blank">Designstub</a>
         <p> 

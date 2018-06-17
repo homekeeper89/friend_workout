@@ -20,10 +20,10 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	/*@RequestMapping(value = "/", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		
-		return "index";
-	}*/
+		return "about";
+	}
 	
 }

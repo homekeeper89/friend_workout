@@ -6,7 +6,8 @@
 <mapper namespace = "jake.friend.mapper.fileMapper">
 
 <select id = "getFiles" resultType = "file">
-	select * from tb_file order by f_regdate desc
+	SELECT f_seq, b.b_seq, f.f_regdate, f.f_path, b.b_title, b.b_content, b.u_name 
+	FROM tb_file f JOIN tb_bbs b ON f.b_seq = b.b_seq WHERE b.b_status != 1 ORDER BY f_regdate DESC
 </select>
 
 </mapper>

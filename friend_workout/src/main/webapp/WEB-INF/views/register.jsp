@@ -22,11 +22,6 @@
 <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
 <!-- Responsive Style -->
 <link href="/resources/css/responsive.css" rel="stylesheet" type="text/css">
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <script src="/resources/js/assets/modernizr-2.8.3.min.js" type="text/javascript"></script>
 </head>
 
@@ -41,47 +36,64 @@
     </hgroup>
   </div>
 </header>
-<main class="main-wrapper" id="container"> 
-  <!-- image Gallery -->
-  <div class="wrapper">
-  	<form id = "user/post" action="/users" method = "POST">
+
+<main class="main-wrapper" id="container">
+<div class = "container" style="padding-top: 20px">
+    <div class = "panel-body">
+        <div class = "row">
+            <div class = "col-lg-12">
+                <form id = "user/post" action="/users" method = "POST">
   	<div class = "row">
-  		<input type = "text" name = "email" id = "email" tabindex="1"
+  		<label for ="email">Eamil</label><br><input type = "text" name = "email" id = "email" tabindex="1"
   		placeholder = "이메일을 입력해주세요">
   	</div>
   	<div class = "row">
-  		<input type = "text" name = "u_name" id = "u_name" tabindex="2"
+  		<label for = "name">nickname</label><br><input type = "text" name = "u_name" id = "u_name" tabindex="2"
   		placeholder = "닉네임을 입력해주세요">
   	</div>
   	<div class = "row">
-  		<input type = "password" name = "pwd" id = "pwd" tabindex="3"
+        <label for = "pwd">비밀번호</label><br>
+        <input type = "password" name = "pwd" id = "pwd" tabindex="3"
   		placeholder = "비밀번호를 입력해주세요">
   	</div>
+    <br>                
+    <div class = "row">
+    <label> 아래 부분은 차후 비교분석을 위해 필요한 정보이니<br>
+        대략적으로 입력해주시면 감사하겠습니다.</label>                
+    </div>
+                    <br>
   	<div class = "row">
+        <label for = "age">나이</label><br>
   		<input type = "number" name = "age" id = "age" tabindex="4"
   		placeholder = "나이를 입력해주세요">
   	</div>
   	  	<div class = "row">
-  	  	<label for = "sex">성별을 선택하여주세요</label>
-  	  	<select name = "sex" id = "sex" tabindex = "5">
+  	  	<label for = "sex">성별을 선택하여주세요</label><br>
+  	  	<select name = "sex" id = "sex" tabindex = "5"
+                style="width:170px;height:30px">
   	  		<option value = "0"> 남자 </option>
   	  		<option value = "1"> 여자 </option>
   	  	</select>
   	</div>
   	<div class = "row">
+        <label for = "weight">몸무게를 입력해주세요</label><br>
   		<input type = "number" name = "weight" id = "weight" tabindex="6"
-  		placeholder = "키를 입력해주세요">
+  		placeholder = "몸무게를 입력해주세요">
   	</div>
   	<div class = "row">
+        <label for = "height">키를 입력해주세요</label><br>
   		<input type = "number" name = "height" id = "height" tabindex="7"
-  		placeholder = "몸무게를 입력해주세요">
+  		placeholder = "키를 입력해주세요">
   	</div>
   	<div class = "row">
   		<input type = "submit" value = "제출">
   	</div>
   	</form>
-  </div>
-</main>
+            </div>
+        </div>
+    </div>
+      </div>
+    </main>
 </body>
 <jsp:include page="../inc/footter.jsp"></jsp:include>
 </html>

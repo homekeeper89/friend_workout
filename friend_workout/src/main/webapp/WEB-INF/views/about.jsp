@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <html>
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
@@ -42,28 +41,33 @@
   </div>
 </header>
 <!-- header end -->
-<!-- modal start --> 
 	<jsp:include page="../inc/upload-modal.jsp"/>
-<!-- modal end -->
 <main class="main-wrapper" id="container">
-  <!-- image Gallery -->
-  <div class="wrapper">
+<div class = "container">
+	<div class="jumbotron">
+  <h1 class="display-3">안녕하세요!</h1>
+  <p class="lead">중요한것은 결과가 아니라 하고자 하는 의지입니다!</p>
+  <hr class="my-4">
+  <p>나와 같은 사람들이 얼마나 자주 운동하는지 직접 보세요!</p>
+  <p>자극 받으세요, 내일로 미루기만 하면 진짜 내일은 없습니다</p>
+  <p>내일이 아닌 지금 해야할 때 입니다!</p>
+</div>
+<div class="wrapper">
     <div class="">
       <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5 masonry">
-      <c:forEach items="${fdata}" var="data" varStatus="cnt">
-          <li class="masonry-item grid">
-          <figure class="effect-sarah"> <img src = "/display?name=${data.value.f_path}" alt = ""/>
+        <li class="masonry-item grid">
+          <figure class="effect-sarah"> <img src="/resources/images/gallery/01.jpg" alt="" />
             <figcaption>
-              <h2><span>${data.value.b_title}</span></h2>
-              <h2><span>${data.value.b_content}</span></h2>
-              <p>${data.value.f_regdate}</p>
-              <a href="#">View more</a> </figcaption>
+              <h2>Photo <span>Title</span></h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <a href="details.html">View more</a> </figcaption>
           </figure>
         </li>
-    </c:forEach>
-    </ul>
+      </ul>
     </div>
   </div>
+</div>
+  <!-- image Gallery -->
 </main>
 
 <!-- Image Gallery --> 

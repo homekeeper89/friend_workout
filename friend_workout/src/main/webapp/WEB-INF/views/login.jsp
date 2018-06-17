@@ -37,6 +37,7 @@
   </div>
 </header>
 <main class="main-wrapper" id="container"> 
+<div class = "container">
 	<form action = "/users/sessions" method = "post">
 		<div class = "form-group has-feedback">
 			<input type = "text" name = "email" class = "form-control"
@@ -63,6 +64,7 @@
 			</div>
 		</div>
 	</form>
+	</div>
 </main>
 </body>
 <jsp:include page="../inc/footter.jsp"></jsp:include>

@@ -28,6 +28,9 @@ import jake.friend.domain.fileVO;
 import jake.friend.persistence.fileDAOimpl;
 import jake.friend.util.MediaUtils;
 
+/* 메인 페이지에서 파일을 불러오고 보여주는 동작을 하는 컨트롤러
+ * 
+ */
 @Controller
 public class fileCON {
 	private static Logger logger = Logger.getLogger(fileCON.class);
