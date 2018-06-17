@@ -50,7 +50,7 @@ public class fileCON {
 				continue;
 			}
 			fdata.put(v.getB_seq(), v);
-			logger.info("f_regdate :" + v.getF_regdate());
+			//logger.info("f_regdate :" + v.getF_regdate());
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");

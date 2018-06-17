@@ -48,7 +48,7 @@ public class userCON {
 	public void sessionGet(userVO vo, HttpSession session, Model model) throws Exception{
 		userVO res = dao.login(vo);
 		if (res == null || res.getU_name() == null) {
-			logger.info("controller " + res);
+			//logger.info("controller " + res);
 			model.addAttribute("userVO", null); // 이렇게 해야 막아지네 ㅡ,.ㅡ
 			return ;
 		}
