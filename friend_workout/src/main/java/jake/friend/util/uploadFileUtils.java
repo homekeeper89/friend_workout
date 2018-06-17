@@ -32,15 +32,7 @@ public class uploadFileUtils {
 		// 06.17 file 사이즈를 알아보기 위해 작성함, 600 * 400 으로 되야 잘 나옴
 		BufferedImage bi = ImageIO.read(target);
 		logger.debug("weight : " + bi.getWidth() + ":" + "heiglt : " + bi.getHeight()); // 가로 세로 구하기.
-		double rate = (double)((double)bi.getWidth() / (double)bi.getHeight());
-		if (rate < 0.7 ) {
-			mainPosition = "W"; // 가로로 넓은 사진인 경우
-		}else if(rate > 1.3) {
-			mainPosition = "H"; // 세로로 높은 사진인 경우
-		}else {
-			mainPosition = "E"; // 비슷할경우(정사각형)
-		}
-		logger.debug("mainPo : " + mainPosition + ": ratio :" + rate);
+		mainPosition = bi.getWidth() - bi.getHeight() > 0 ? "W" : "H";
 		String uploadedFileName = resizeFile.reszieFiles(uploadPath, savedPath, savedName, mainPosition);
 				//String uploadedFileName = makeThumnail(uploadPath, savedPath, savedName); 
 		// 06.16 썸네일로 만들어서 저장을 하고 게시판에 뿌리니 화질이 너무떨어짐. 원본 그대로 해야함

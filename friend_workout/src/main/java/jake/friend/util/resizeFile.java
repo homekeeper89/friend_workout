@@ -18,8 +18,8 @@ public class resizeFile {
 		int imageWidth;
 		int imageHeight;
 		double ratio;
-		int w;
-		int h;
+		int w = 0;
+		int h = 0;
 		String resizeName = null;
 		try{
 			// 원본 이미지 가져오기
@@ -29,16 +29,11 @@ public class resizeFile {
 			imageWidth = image.getWidth(null);
 			imageHeight = image.getHeight(null);
 			if(mainPosition.equals("W")){    // 넓이기준
-				ratio = (double)newWidth/(double)imageWidth;
-				w = (int)(imageWidth * ratio);
-				h = (int)(imageHeight * ratio);
+				w = 600;
+				h = 400;
 			}else if(mainPosition.equals("H")){ // 높이기준
-				ratio = (double)newHeight/(double)imageHeight;
-				w = (int)(imageWidth * ratio);
-				h = (int)(imageHeight * ratio);
-			}else{ //설정값 (비율무시)
-				w = newWidth;
-				h = newHeight;
+				w = 400;
+				h = 600;
 			}
 			// 이미지 리사이즈
 			// Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
