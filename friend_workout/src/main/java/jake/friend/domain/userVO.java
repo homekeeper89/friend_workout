@@ -1,5 +1,9 @@
 package jake.friend.domain;
 
+/**
+ * @author Jake
+ *
+ */
 public class userVO {
 	
 	private int u_seq;
@@ -11,14 +15,18 @@ public class userVO {
 	private int height;
 	private int weight;
 	private int u_status;
-	
-	
-	
+	private boolean UseCookie;
+
+
+	public boolean isUseCookie() {
+		return UseCookie;
+	}
+	public void setUseCookie(boolean useCookie) {
+		UseCookie = useCookie;
+	}
 	public int getU_seq() {
 		return u_seq;
 	}
-
-
 
 	public void setU_seq(int u_seq) {
 		this.u_seq = u_seq;
@@ -28,44 +36,25 @@ public class userVO {
 		return email;
 	}
 
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public String getU_name() {
 		return u_name;
 	}
-
-
-
 	public void setU_name(String u_name) {
 		this.u_name = u_name;
 	}
-
-
-
 	public String getPwd() {
 		return pwd;
 	}
-
-
-
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
-
-
-
 	public int getSex() {
 		return sex;
 	}
-
-
-
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
@@ -117,15 +106,12 @@ public class userVO {
 	public void setU_status(int u_status) {
 		this.u_status = u_status;
 	}
-
-
-
 	@Override
 	public String toString() {
 		return "userVO [u_seq=" + u_seq + ", email=" + email + ", u_name=" + u_name + ", pwd=" + pwd + ", sex=" + sex
-				+ ", age=" + age + ", height=" + height + ", weight=" + weight + ", u_status=" + u_status + "]";
+				+ ", age=" + age + ", height=" + height + ", weight=" + weight + ", u_status=" + u_status
+				+ ", UseCookie=" + UseCookie + "]";
 	}
 
-	 
 
 }

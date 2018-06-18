@@ -1,6 +1,9 @@
 package jake.friend.persistence;
 
+import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -16,6 +19,21 @@ public class userDAOImpl implements userDAO {
 	private SqlSession session;
 	private static String namespace = "jake.friend.mapper.userMapper";
 	
+	
+	@Override
+	public void keepLogin(int u_seq, String sessionId, Date next) {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("u_seq",u_seq);
+		paramMap.put("sessionId",  sessionId);
+		paramMap.put("next",next);
+		session.update(namespace + ".keepLogin", paramMap);
+	}
+
+	@Override
+	public userVO checkUserWithSessionKey(String value) {
+		return session.selectOne(namespace+".checkUserWithSessionKey", value);
+	}
+
 	@Override
 	public int create(userVO vo) throws Exception {
 		int num = session.insert(namespace + ".create", vo);

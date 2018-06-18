@@ -15,7 +15,7 @@
           	<input type = 'file' name = 'file'>
           	<input type = "text" name = "b_title">
           	<input type = "text" name = "b_content">
-          	<input type = "hidden" name = "u_name" value = "${login.u_name}">
+          	<input type = "text" name = "u_name" value = "${login.u_name}" readonly>
           	<input type = 'submit' value = 'send'>
           </form>
         </div>	

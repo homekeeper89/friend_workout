@@ -11,10 +11,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+/*
+ * 	/users/sessions 의 경로에서 작동하는 인텁셉터임
+ */
 public class interLogin extends HandlerInterceptorAdapter {
 	private static final String LOGIN = "login";
 	private static final Logger logger = 
 			LoggerFactory.getLogger(interLogin.class);
+
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {

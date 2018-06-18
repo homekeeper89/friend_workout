@@ -66,7 +66,7 @@ public class fileCON {
 	public ResponseEntity<byte[]> displayFile(@RequestParam("name") String fileName)throws Exception{
 		InputStream in = null;
 		ResponseEntity<byte[]> entity = null;
-		logger.info("FILE NAME : " + fileName);
+		//logger.info("FILE NAME : " + fileName);
 		try {
 			String formatName = fileName.substring(fileName.lastIndexOf(".")+1);
 			MediaType mType = MediaUtils.getMediaType(formatName);

@@ -16,5 +16,13 @@
 	and u_status != 1
 </select>
 
+<update id = "keepLogin">
+	update tb_user set sessionKey = #{sessionId}, sessionLimit = #{next} where u_seq = #{u_seq}
+</update>
+
+<select id = "checkUserWithSessionKey" resultType = "user">
+	select * from tb_user where sessionKey = #{value} and sessionlimit > now();
+</select>
+
 
 </mapper>
