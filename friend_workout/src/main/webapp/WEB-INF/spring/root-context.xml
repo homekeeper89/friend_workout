@@ -50,7 +50,6 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<tx:annotation-driven proxy-target-class="true"/>
 
-	<context:component-scan
-		base-package="jake.friend.persistence, jake.friend.service" ></context:component-scan>
+	<context:component-scan base-package="jake.friend.persistence"/>
 
 </beans>

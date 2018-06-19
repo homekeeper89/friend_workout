@@ -30,7 +30,7 @@ public class interLogin extends HandlerInterceptorAdapter {
 			logger.info("new login success");
 			session.setAttribute(LOGIN, userVO);
 			// cookie 
-			if (request.getParameter("userCookie") != null) {
+			if (request.getParameter("useCookie") != null) { // userVO가 갖고있는 useCookie 변수, 불린임
 				logger.info("remember me.....");
 				Cookie loginCookie = new Cookie("loginCookie", session.getId());
 				loginCookie.setPath("/");

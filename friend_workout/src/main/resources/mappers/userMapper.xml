@@ -12,7 +12,7 @@
 
 <select id = "login" resultType="user">
 	select u_seq,u_name, sex, age, height, weight from tb_user
-	where email = #{email} and pwd = #{pwd} 
+	where email = #{email}
 	and u_status != 1
 </select>
 

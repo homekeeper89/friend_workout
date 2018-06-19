@@ -48,7 +48,9 @@
 			<beans:ref bean = "auth_inter"></beans:ref>
 		</interceptor>
 	</interceptors>
-	<context:component-scan base-package="jake.friend.controller" />
+	<!-- password -->
+  <beans:bean id="pwdEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />   
+	<!-- pwd 복호화를 위한 -->
 	
 	<!-- file upload -->
 	<beans:bean name="multipartResolver"
@@ -59,5 +61,8 @@
 		<beans:constructor-arg value="C:\\friend\workingout"/> 
 	</beans:bean>
 	<!--  file upload -->
-
+	<context:component-scan base-package="jake.friend.controller"/>
+	<context:component-scan base-package="jake.friend.service"/>
+	<!-- /project/src/project/biz -->
+	<!-- /friend_workout/src/main/java/jake/friend/controller -->
 </beans:beans>

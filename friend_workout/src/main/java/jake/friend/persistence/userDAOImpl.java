@@ -26,7 +26,12 @@ public class userDAOImpl implements userDAO {
 		paramMap.put("u_seq",u_seq);
 		paramMap.put("sessionId",  sessionId);
 		paramMap.put("next",next);
+		System.out.println("dao »Æ¿Œ" + u_seq + ":" + sessionId + ":" + next);
+		try {
 		session.update(namespace + ".keepLogin", paramMap);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override

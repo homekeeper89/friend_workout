@@ -36,7 +36,9 @@
     </hgroup>
   </div>
 </header>
-
+<!-- modal start --> 
+	<jsp:include page="../inc/upload-modal.jsp"/>
+<!-- modal end -->
 <main class="main-wrapper" id="container">
 <div class = "container" style="padding-top: 20px">
     <div class = "panel-body">

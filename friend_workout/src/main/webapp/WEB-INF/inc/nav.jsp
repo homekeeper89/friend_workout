@@ -24,6 +24,6 @@
   <li role="presentation"><a href="/info">About</a></li>
   <li role="presentation"><a href="/users">register</a></li>
     <li role="presentation"><a href="/users/session">login</a></li>
-     <li role="presentation"><a href="/#">contact</a></li>
+     <li role="presentation"><a href="/mail">contact</a></li>
 </ul>
       </nav>

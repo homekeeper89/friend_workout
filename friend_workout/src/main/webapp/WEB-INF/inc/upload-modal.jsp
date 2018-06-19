@@ -10,12 +10,14 @@
           <h4 class="modal-title">proof yourself</h4>
         </div>
         <div class="modal-body">
-          <p>Upload your pic</p>
+          <p>오늘의 운동을 인증해주세요!!</p>
+          <p>몸이나 얼굴이 나온 사진은 안됩니다. 그저 내가 오늘 운동 왔다는 것만 보여주세요</p>
+          <p>사진 업로드로 인해 발생되는 피해에 대해 책임지지 않습니다.</p>
           <form id = "modal-pic" action = "/files" method = "post" enctype = "multipart/form-data">
           	<input type = 'file' name = 'file'>
-          	<input type = "text" name = "b_title">
-          	<input type = "text" name = "b_content">
-          	<input type = "text" name = "u_name" value = "${login.u_name}" readonly>
+          	<label>간단한 제목</label><input type = "text" name = "b_title"><br>
+          	<label>간단한 내용</label><input type = "text" name = "b_content"><br>
+          	<label>작성자</label><input type = "text" name = "u_name" value = "${login.u_name}" readonly><br>
           	<input type = 'submit' value = 'send'>
           </form>
         </div>	

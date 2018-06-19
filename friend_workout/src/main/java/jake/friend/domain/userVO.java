@@ -15,15 +15,18 @@ public class userVO {
 	private int height;
 	private int weight;
 	private int u_status;
-	private boolean UseCookie;
+	private boolean useCookie;
+
 
 
 	public boolean isUseCookie() {
-		return UseCookie;
+		return useCookie;
 	}
+
 	public void setUseCookie(boolean useCookie) {
-		UseCookie = useCookie;
+		this.useCookie = useCookie;
 	}
+
 	public int getU_seq() {
 		return u_seq;
 	}
@@ -110,7 +113,7 @@ public class userVO {
 	public String toString() {
 		return "userVO [u_seq=" + u_seq + ", email=" + email + ", u_name=" + u_name + ", pwd=" + pwd + ", sex=" + sex
 				+ ", age=" + age + ", height=" + height + ", weight=" + weight + ", u_status=" + u_status
-				+ ", UseCookie=" + UseCookie + "]";
+				+ ", UseCookie=" + useCookie + "]";
 	}
 
 
