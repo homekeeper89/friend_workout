@@ -34,7 +34,7 @@ public class bbsDAOImpl implements bbsDAO {
 	}
 	@Override
 	public bbsVO read(int b_seq) throws Exception {
-		return session.selectOne("read", b_seq);
+		return session.selectOne(namespace + ".read", b_seq);
 		
 	}
 

@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session = "false"%>
+<%@ page session="false"%>
 <html>
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
@@ -55,26 +55,30 @@
 	<jsp:include page="../inc/upload-modal.jsp" />
 	<main class="main-wrapper" id="container">
 	<div class="container">
-		<div>
-			<table class = "table tbale=bordered">
-			<tr>
-			<th style = "width:10px"> BNO </th>
-			<th> TITLE </th>
-			<th> WRITER </th>
-			<th> REGDATE </th>
-			<th style = "width:40px">VIEWCNT</th>
-			</tr>
-			<c:forEach items = "${list}" var = "boardVO">
-			<tr>
-			<td>${boardVO.rownum}</td>
-			<td><a href = '/pages?b_seq=${boardVO.b_seq}'>${boardVO.b_title}</a></td>
-			<td>${boardVO.u_name}</td>
-			<td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value = "${boardVO.b_regdate}"/></td>
-			<td><span class = "badge bg-red">${boardVO.viewcnt}</span></td>
-			</tr>
-			</c:forEach>
-			</table>
+		<form role="form" method="post">
+			<input type="hidden" name="b_seq" value="${boardVO.b_seq}">
+		</form>
+		<div class="box-body">
+			<div class="form-group">
+				<label for="exampleInputEmail1">Title</label> <input type="text"
+					name="b_title" class="form-control" value="${boardVO.b_title}" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label for = "exampleInputPassword1">Content</label>
+				<textarea class = "form-control" name = "b_content" rows = "3"
+				readonly = "readonly">${boardVO.b_content}</textarea>
+			</div>
+			<div class = "form-group">
+				<label for = "exampleInputEmail1">Writer</label>
+				<input type = "text" name = "writer" class = "form-control" value = "${boardVO.u_name}"
+				readonly = "readonly">
+			</div>
 		</div>
+	</div>
+	<div class = "box-footer">
+		<button type = "submit" class ="btn btn-warning">Modify</button>
+		<button type = "submit" class ="btn btn-danger">Remove</button>
+		<button type = "submit" class ="btn btn-primary">List ALL</button>
 	</div>
 	<!-- image Gallery --> </main>
 

@@ -1,6 +1,6 @@
 package jake.friend.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class bbsVO {
 	
@@ -13,9 +13,16 @@ public class bbsVO {
 	private String files; // file 저장을 위해 만든 변수
 	private int category; // 게시판 구분을 위한 카테고리, 0 이미지, 1은 게시판 2는 댓글, 3은 마이페이지
 	private int viewcnt; // 조회수를 위한 
+	private int rownum; // 게시글 넘버링을 위해 따로 만듬
 	
 	
 	
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 	public int getCategory() {
 		return category;
 	}

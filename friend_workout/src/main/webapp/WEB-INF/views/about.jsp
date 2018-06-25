@@ -42,38 +42,35 @@
 </header>
 <!-- header end -->
 	<jsp:include page="../inc/upload-modal.jsp"/>
-<main class="main-wrapper" id="container">
-<div class = "container">
-	<div class="jumbotron">
-  <h1 class="display-3">안녕하세요!</h1>
-  <p class="lead">중요한것은 결과가 아니라 하고자 하는 의지입니다!</p>
+    <main>
+    <div class = "container" style="border: 20px solid green;">
+        <div class = "row" style=" border: 1px solid red;">
+            <div class = "col-xs-4" style="border: 1px solid aqua; margin-top: 10px">
+                <img src="/resources/images/gallery/why.jpg" alt="" />
+            </div>
+            <div class = "col-xs-8">
+               <div class = "jumbotron" style="margin-top: 10px">
+                    <h1>안녕하세요!</h1>
+  <p>계속 업데이트 할 예정입니다.</p>
   <hr class="my-4">
-  <p>나와 같은 사람들이 얼마나 자주 운동하는지 직접 보세요!</p>
-  <p>자극 받으세요, 내일로 미루기만 하면 진짜 내일은 없습니다</p>
-  <p>내일이 아닌 지금 해야할 때 입니다!</p>
-</div>
-<div class="wrapper">
-    <div class="">
-      <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5 masonry">
-        <li class="masonry-item grid">
-          <figure class="effect-sarah"> <img src="/resources/images/gallery/01.jpg" alt="" />
-            <figcaption>
-              <h2>Photo <span>Title</span></h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              <a href="details.html">View more</a> </figcaption>
-          </figure>
-        </li>
-      </ul>
+  <p>개발 일기가 궁금하다면<a href = "http://antananarivo.tistory.com/"><h2>놀러가기</h2></a></p>
+                </div>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-xs-8">
+                <h2> 내일로 미뤄선 아무것도 못합니다.</h2><br>
+                <h2> 하루 한번, 운동전에 한장!</h2>
+            </div>
+            <div class = "col-xs-4">
+                <img src="/resources/images/gallery/best-clothes.jpg" alt="" />
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-  <!-- image Gallery -->
-</main>
+    </main>
+
 
 <!-- Image Gallery --> 
-
-<jsp:include page="../inc/footter.jsp"></jsp:include>
-
 <!-- jQuery --> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
