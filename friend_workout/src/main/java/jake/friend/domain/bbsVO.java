@@ -11,8 +11,23 @@ public class bbsVO {
 	private Date b_regdate;
 	private int b_status;
 	private String files; // file 저장을 위해 만든 변수
+	private int category; // 게시판 구분을 위한 카테고리, 0 이미지, 1은 게시판 2는 댓글, 3은 마이페이지
+	private int viewcnt; // 조회수를 위한 
 	
 	
+	
+	public int getCategory() {
+		return category;
+	}
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	public int getViewcnt() {
+		return viewcnt;
+	}
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
 	public String getFiles() {
 		return files;
 	}
