@@ -28,7 +28,7 @@
 <body>
 <!-- header -->
 <header id="header" class="header">
-  <div class="container-fluid">
+  <div class="container">
     <hgroup> 
       <!-- nav -->
 		<jsp:include page="../inc/nav.jsp"/> <!-- 위로 넘어가서 view랑 같은 라인 이므로 ..을 사용함 -->
@@ -51,12 +51,12 @@
   	</div>
   	<div class = "row">
   		<label for = "name">nickname</label><br><input type = "text" name = "u_name" id = "u_name" tabindex="2"
-  		placeholder = "닉네임을 입력해주세요">
+  		placeholder = "닉네임을 입력해주세요(English Only))">
   	</div>
   	<div class = "row">
         <label for = "pwd">비밀번호</label><br>
         <input type = "password" name = "pwd" id = "pwd" tabindex="3"
-  		placeholder = "비밀번호를 입력해주세요">
+  		placeholder = "비밀번호를 입력해주세요(찾기 기능이 아직 없으니 신중하게, 운영자도 모릅니다)">
   	</div>
     <br>                
     <div class = "row">

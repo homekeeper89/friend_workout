@@ -77,5 +77,11 @@ public class bbsVO {
 	public void setB_status(int b_status) {
 		this.b_status = b_status;
 	}
-
+	@Override
+	public String toString() {
+		return "bbsVO [b_seq=" + b_seq + ", b_title=" + b_title + ", u_name=" + u_name + ", b_content=" + b_content
+				+ ", b_regdate=" + b_regdate + ", b_status=" + b_status + ", files=" + files + ", category=" + category
+				+ ", viewcnt=" + viewcnt + ", rownum=" + rownum + "]";
+	}
+  
 }

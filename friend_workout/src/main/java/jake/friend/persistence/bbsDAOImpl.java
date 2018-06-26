@@ -39,13 +39,13 @@ public class bbsDAOImpl implements bbsDAO {
 	}
 
 	@Override
-	public void update(bbsVO vo) throws Exception {
+	public void modify(bbsVO vo) throws Exception {
 		session.update("update", vo);
 		
 	}
 
 	@Override
-	public void delete(int b_seq) throws Exception {
+	public void remove(int b_seq) throws Exception {
 		session.update("delete", b_seq);
 		
 	}
@@ -54,6 +54,5 @@ public class bbsDAOImpl implements bbsDAO {
 	public List<bbsVO> listAll() throws Exception {
 		return session.selectList("listAll");
 	}
-
 
 }

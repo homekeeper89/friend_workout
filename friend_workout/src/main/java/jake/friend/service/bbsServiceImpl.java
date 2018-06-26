@@ -25,6 +25,16 @@ public class bbsServiceImpl implements bbsService{
 			
 		return dao.read(b_seq);
 	}
+
+	public void remove(int b_seq) throws Exception {
+		dao.remove(b_seq);
+		
+	}
+
+	public void modify(bbsVO board) throws Exception{
+		dao.modify(board);
+		
+	}
 	
 	
 }

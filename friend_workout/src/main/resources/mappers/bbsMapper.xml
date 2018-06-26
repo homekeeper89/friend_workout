@@ -10,15 +10,16 @@
 </insert>
 
 <select id = "read" resultType = "bbs">
-	select b_seq, b_content, u_name, b_regdate from tb_bbs where b_seq = #{b_seq}
+	select b_title, b_seq, b_content, u_name, b_regdate from tb_bbs where b_seq = #{b_seq}
 </select>
 
-<update id = "update" parameterType="int">
-update tb_bbs set b_title = #{b_title}, b_content = #{b_content} where b_seq = #{b_seq}
+<update id = "update" parameterType="bbs">
+update tb_bbs set b_title = #{b_title}, b_content = #{b_content}, 
+	b_regdate = CURRENT_TIMESTAMP where b_seq = #{b_seq}
 </update>
 
 <update id = "delete">
-update tb_bbs set b_stats = 1 where b_seq = #{b_seq}
+update tb_bbs set b_status = 1 where b_seq = #{b_seq}
 </update>
 
 <select id = "listAll" resultType="bbs">

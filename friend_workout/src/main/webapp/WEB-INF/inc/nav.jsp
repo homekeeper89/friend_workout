@@ -9,7 +9,7 @@
 </h1> -->
 <c:choose>
 	<c:when test="${login != null}">
-		<h5>Welcome ${login.u_name}</h5>
+	<h4 class="display-3" align="Left"><strong style="color: navy; font-size: 1.5em;">¿À´ÃÀº ¿îµ¿ ÇÏ¼Ì³ª¿ä ? ${login.u_name}´Ô :D </strong></h4>
 	</c:when>
 </c:choose>
 <!-- logo -->
@@ -22,7 +22,14 @@
 	<!-- Add New Iteration -->
 	<li role="presentation"><a href="/info">About</a></li>
 	<li role="presentation"><a href="/users">register</a></li>
-	<li role="presentation"><a href="/users/session">login</a></li>
+	<c:choose>
+		<c:when test="${login != null}">
+		<li role="presentation"><a href="/users/sessionout">logout</a></li>
+		</c:when>
+		<c:when test="${login == null}">
+		<li role="presentation"><a href="/users/session">login</a></li>
+		</c:when>
+	</c:choose>
 	<li role="presentation"><a href="/mail">contact</a></li>
 	<li role="presentation"><a href="/bbs">Board</a></li>
 </ul>

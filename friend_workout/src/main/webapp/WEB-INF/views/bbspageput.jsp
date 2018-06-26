@@ -54,36 +54,37 @@
 	<!-- header end -->
 	<jsp:include page="../inc/upload-modal.jsp" />
 	<main class="main-wrapper" id="container">
-	<div class="container">
-		<form role="form" method="post">
-			<input type="hidden" name="b_seq" value="${boardVO.b_seq}">
-		</form>
-		<div class="box-body">
-			<div class="form-group">
-				<label for="exampleInputEmail1">Title</label> <input type="text"
-					name="b_title" class="form-control" value="${boardVO.b_title}"
-					readonly="readonly">
+		<div class="container">
+			<form role="form" method="post">
+			<div class = "box-body">
+				<div class = "form-group">
+					<label for = "exampleInputEmail1">BNO</label>
+					<input type = "text" name = "b_seq" class = "form-control"
+					value = "${boardVO.b_seq}" readonly = "readonly">
+				</div>
+				<div class = "form-group">
+					<label for = "exampleInputEmail1">title</label>
+					<input type ="text" name = "b_title" class = "form-control"
+					value = "${boardVO.b_title}">
+				</div>
+				<div class = "fomr-group">
+					<label for = "exmapleInputEmail1">Content</label>
+					<textarea class = "form-control" name = "b_content" rows ="3">
+					${boardVO.b_content}</textarea>
+				</div>
+				<div class = "fomr-group">
+					<label for = "exmapleInputEmail1">Writer</label>
+					<input type = "text" name = "u_name" class = "form-control"
+					value = "${boardVO.u_name}" readonly>
+				</div>
 			</div>
-			<div class="form-group">
-				<label for="exampleInputPassword1">Content</label>
-				<textarea class="form-control" name="b_content" rows="3"
-					readonly="readonly">${boardVO.b_content}</textarea>
+			</form>
+			<div class ="box-footer">
+				<button type = "submit" class = "btn btn-primary">SAVE</button>
+				<button type = "submit" class = "btn btn-warning">CANCEL</button>
 			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Writer</label> <input type="text"
-					name="writer" class="form-control" value="${boardVO.u_name}"
-					readonly="readonly">
-			</div>
-		</div>
-
-		<div class="box-footer">
-			<button type="submit" class="btn btn-warning">Modify</button>
-			<button type="submit" class="btn btn-danger">Remove</button>
-			<button type="submit" class="btn btn-primary">List ALL</button>
-		</div>
-	</div><!-- container -->
+		</div>		
 	</main>
-
 
 	<jsp:include page="../inc/footter.jsp"></jsp:include>
 
@@ -128,17 +129,12 @@
 			var formObj = $("form[role = 'form']");
 			console.log(formObj)
 			$(".btn-warning").on("click", function(){
-				formObj.attr("action", "/bbs/page");
-				formObj.attr("method", "GET");
-				formObj.submit();
-			})// 수정 버튼 누르면 수정으로
-			$(".btn-danger").on("click", function(){
-				formObj.attr("action", "/bbs/pages");
-				formObj.attr("method", "delete");
-				formObj.submit();
-			})// 삭제 버튼 누르면 삭제로
-			$(".btn-primary").on("click", function(){
 				self.location = "/bbs";
+			})// 취소버튼 누르면 뿅
+			$(".btn-primary").on("click", function(){
+				formObj.attr("action", "/bbs/pages");
+				formObj.attr("method", "post");
+				formObj.submit();
 			}) // 조회버튼 누르면 조회하러
 			
 			

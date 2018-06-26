@@ -42,7 +42,7 @@
 <body>
 	<!-- header -->
 	<header id="header" class="header">
-		<div class="container">
+		<div class="container-fluid">
 			<hgroup>
 				<!-- nav -->
 				<jsp:include page="../inc/nav.jsp" />
@@ -61,29 +61,28 @@
 		<div class="box-body">
 			<div class="form-group">
 				<label for="exampleInputEmail1">Title</label> <input type="text"
-					name="b_title" class="form-control" value="${boardVO.b_title}"
-					readonly="readonly">
+					name="b_title" class="form-control" value="${boardVO.b_title}" readonly="readonly">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputPassword1">Content</label>
-				<textarea class="form-control" name="b_content" rows="3"
-					readonly="readonly">${boardVO.b_content}</textarea>
+				<label for = "exampleInputPassword1">Content</label>
+				<textarea class = "form-control" name = "b_content" rows = "3"
+				readonly = "readonly">${boardVO.b_content}</textarea>
 			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail1">Writer</label> <input type="text"
-					name="writer" class="form-control" value="${boardVO.u_name}"
-					readonly="readonly">
+			<div class = "form-group">
+				<label for = "exampleInputEmail1">Writer</label>
+				<input type = "text" name = "writer" class = "form-control" value = "${boardVO.u_name}"
+				readonly = "readonly">
 			</div>
 		</div>
+	</div>
+	<div class = "box-footer">
+		<button type = "submit" class ="btn btn-warning">Modify</button>
+		<button type = "submit" class ="btn btn-danger">Remove</button>
+		<button type = "submit" class ="btn btn-primary">List ALL</button>
+	</div>
+	<!-- image Gallery --> </main>
 
-		<div class="box-footer">
-			<button type="submit" class="btn btn-warning">Modify</button>
-			<button type="submit" class="btn btn-danger">Remove</button>
-			<button type="submit" class="btn btn-primary">List ALL</button>
-		</div>
-	</div><!-- container -->
-	</main>
-
+	<!-- Image Gallery -->
 
 	<jsp:include page="../inc/footter.jsp"></jsp:include>
 
@@ -128,8 +127,8 @@
 			var formObj = $("form[role = 'form']");
 			console.log(formObj)
 			$(".btn-warning").on("click", function(){
-				formObj.attr("action", "/bbs/page");
-				formObj.attr("method", "GET");
+				formObj.attr("action", "/bbs/pages");
+				formObj.attr("method", "put");
 				formObj.submit();
 			})// 수정 버튼 누르면 수정으로
 			$(".btn-danger").on("click", function(){
@@ -138,7 +137,7 @@
 				formObj.submit();
 			})// 삭제 버튼 누르면 삭제로
 			$(".btn-primary").on("click", function(){
-				self.location = "/bbs";
+				self.location = "/bbs/pages";
 			}) // 조회버튼 누르면 조회하러
 			
 			

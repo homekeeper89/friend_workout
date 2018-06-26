@@ -71,15 +71,9 @@ public class userCON {
 			service.keepLogin(res.getU_seq(), session.getId(), sessionLimit);
 		}
 	}
-	
-/*	@RequestMapping(value = "/sessions", method = RequestMethod.POST) // login하는 메서드
-	public void sessionGet(userVO vo, HttpSession session, Model model) throws Exception{
-		userVO res = dao.login(vo);
-		if (res == null || res.getU_name() == null) {
-			//logger.info("controller " + res);
-			model.addAttribute("userVO", null); // 이렇게 해야 막아지네 ㅡ,.ㅡ
-			return ;
-		}
-		model.addAttribute("userVO", res);
-	}*/
+	@RequestMapping(value = "/sessionout")
+	public String UserLogout(HttpSession session) {
+		session.invalidate(); // 세션을 초기화 하고 넘긴다.
+		return "redirect:" + "/";
+	}
 }

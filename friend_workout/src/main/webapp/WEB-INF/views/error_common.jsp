@@ -22,6 +22,11 @@
 <link rel="stylesheet" href="/resources/css/main.css" type="text/css">
 <!-- Responsive Style -->
 <link href="/resources/css/responsive.css" rel="stylesheet" type="text/css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 <script src="/resources/js/assets/modernizr-2.8.3.min.js" type="text/javascript"></script>
 </head>
 <body>
@@ -36,33 +41,21 @@
   </div>
 </header>
 <!-- header end -->
-<button type="button" class="btn btn-info btn-lg" id="workingout">YourSelf</button><!--  modal 버튼 -->
-<!-- modal start --> 
 	<jsp:include page="../inc/upload-modal.jsp"/>
-<!-- modal end -->
-	<form role = "fomr" method = "post">
-		<div class = "box-body">
-			<div class = "form-group">
-			<label for= "exampleInputEmail1"> title</label>
-			<input type = "text" name = "b_title" class = "form-control" palceholder = "Enter Title">
-			</div>
-			<div class = "form-group">
-				<label for ="exampleInputPassword1"> content</label>
-					<textarea class = "form-control" name = "b_content" row = "3" palceholder = "Enter...."></textarea>
-			</div>
-			<div class = "form-group">
-				<label for = "exampleInputEmail1"> Writer</label>
-				<input type = "text" name = "u_name" class = "form-control" value = "${login.u_name}" readonly>
-			</div>
-		</div>
-		<div class = "box-footer">
-			<button type = "submit" class = "btn btn-primary"> Submit</button>
-		</div>
-	</form>
+    <main>
+    <div class = "container" style="border: 20px solid green;">
+        <h4>${exception.getMessage()}</h4>
+        <h4>이 창이 보이면 스크린 샷 찍어서 좀 보내주세요 : )</h4>
+        <ul>
+        	<c:forEach items = "${exception.getStackTrace()}" var = "stack">
+        	<li>${statck.toString()}</li>
+        	</c:forEach>
+        </ul>
+    </div>
+    </main>
 
 
-
-<jsp:include page="../inc/footter.jsp"></jsp:include>
+<!-- Image Gallery --> 
 <!-- jQuery --> 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 

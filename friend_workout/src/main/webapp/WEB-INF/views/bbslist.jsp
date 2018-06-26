@@ -42,7 +42,7 @@
 <body>
 	<!-- header -->
 	<header id="header" class="header">
-		<div class="container-fluid">
+		<div class="container">
 			<hgroup>
 				<!-- nav -->
 				<jsp:include page="../inc/nav.jsp" />
@@ -67,7 +67,7 @@
 			<c:forEach items = "${list}" var = "boardVO">
 			<tr>
 			<td>${boardVO.rownum}</td>
-			<td><a href = '/pages?b_seq=${boardVO.b_seq}'>${boardVO.b_title}</a></td>
+			<td><a href = '/bbs/pages?b_seq=${boardVO.b_seq}'>${boardVO.b_title}</a></td>
 			<td>${boardVO.u_name}</td>
 			<td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value = "${boardVO.b_regdate}"/></td>
 			<td><span class = "badge bg-red">${boardVO.viewcnt}</span></td>

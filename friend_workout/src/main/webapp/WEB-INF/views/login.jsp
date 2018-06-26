@@ -28,7 +28,7 @@
 <body>
 <!-- header -->
 <header id="header" class="header">
-  <div class="container-fluid">
+  <div class="container">
     <hgroup> 
       <!-- nav -->
 		<jsp:include page="../inc/nav.jsp"/> <!-- 위로 넘어가서 view랑 같은 라인 이므로 ..을 사용함 -->
