@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import jake.friend.controller.userCON;
+import jake.friend.cri.Criteira;
 import jake.friend.domain.bbsVO;
 
 @Repository
@@ -51,8 +52,25 @@ public class bbsDAOImpl implements bbsDAO {
 	}
 
 	@Override
-	public List<bbsVO> listAll() throws Exception {
-		return session.selectList("listAll");
+	public List<bbsVO> listAll(int page) throws Exception { // 페이징 처리를 위해 파라미터가 추가됨
+		if (page <= 0) {
+			page = 1;
+		}
+		page = (page - 1) * 10; // 게시물 아래 페이지 
+		return session.selectList(namespace + ".listAll", page);
 	}
+
+	@Override
+	public List<bbsVO> listCriteria(Criteira cri) throws Exception {		
+		return session.selectList(namespace + ".listCriteria", cri);
+	}
+
+	@Override
+	public int countPaging(Criteira cri) throws Exception {
+		return session.selectOne(namespace + ".countPaging", cri);
+	}
+	
+	
+
 
 }

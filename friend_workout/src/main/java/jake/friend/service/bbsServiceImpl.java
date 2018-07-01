@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jake.friend.cri.Criteira;
 import jake.friend.domain.bbsVO;
 import jake.friend.persistence.bbsDAOImpl;
 
@@ -16,10 +17,9 @@ public class bbsServiceImpl implements bbsService{
 	
 	@Override
 	public List<bbsVO> listall() throws Exception {
-		List<bbsVO> vo = dao.listAll();
+		List<bbsVO> vo = dao.listAll(3);
 		return vo;
 	}
-
 	@Override
 	public bbsVO read(int b_seq) throws Exception {
 			
@@ -35,6 +35,17 @@ public class bbsServiceImpl implements bbsService{
 		dao.modify(board);
 		
 	}
+	
+	@Override
+	public List<bbsVO> listCriteria(Criteira cri) throws Exception {
+		return dao.listCriteria(cri);
+	}
+	@Override
+	public int listCountCriteria(Criteira cri) throws Exception {
+		return dao.countPaging(cri);
+	}
+	
+	
 	
 	
 }

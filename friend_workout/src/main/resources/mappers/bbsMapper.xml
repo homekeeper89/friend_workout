@@ -26,7 +26,16 @@ update tb_bbs set b_status = 1 where b_seq = #{b_seq}
 	<!-- select * from tb_bbs where b_seq != 1 and category = 1 order by b_seq desc, b_regdate desc -->
 	SELECT @RNUM := @RNUM + 1 AS ROWNUM, t.* 
 	FROM (SELECT * FROM tb_bbs WHERE category = 1 and b_seq != 1) t, 
-	( SELECT @RNUM := 0 ) R
+	( SELECT @RNUM := 0 ) R limit #{pageStart}, #{perPageNum}
+</select>
+<select id = "listCriteria" resultType="bbs"> <!-- Cri를 적용한 친구인데 기존과 뭐가 다르지 -->
+	select * from tb_bbs where category = 1 and b_status !=1
+	order by b_seq desc, b_regdate desc 
+	limit #{pageStart}, #{perPageNum} 
+</select>
+
+<select id = "countPaging" resultType = "int">
+	select count(b_seq) from tb_bbs where b_status != 1 and category = 1
 </select>
 
 <insert id = "addAttach">
