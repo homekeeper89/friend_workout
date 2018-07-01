@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <html>
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
@@ -84,6 +83,10 @@
 				<button type = "submit" class = "btn btn-warning">CANCEL</button>
 			</div>
 		</div>		
+		<form role = "page" action = "modifyPage" method = "post">
+			<input type = "hidden" name = "page" value = "${cri.page}">
+			<input type = "hidden" name = "perPageNum" value = "${cri.perPageNum}">
+		</form>
 	</main>
 
 	<jsp:include page="../inc/footter.jsp"></jsp:include>
@@ -129,7 +132,7 @@
 			var formObj = $("form[role = 'form']");
 			console.log(formObj)
 			$(".btn-warning").on("click", function(){
-				self.location = "/bbs";
+				self.location = "/bbs?page=${cri.page}&perPageNum=${cri.perPageNum}";
 			})// 취소버튼 누르면 뿅
 			$(".btn-primary").on("click", function(){
 				formObj.attr("action", "/bbs/pages");

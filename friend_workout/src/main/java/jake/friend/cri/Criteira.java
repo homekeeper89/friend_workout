@@ -17,16 +17,16 @@ public class Criteira {
 	}
 
 	public int getPage() {
-		return page;
+		return this.page;
 	}
-
 	public void setPage(int page) {
-		if(page <= 0){
+		if(page <= 0) {
 			this.page = 1;
-			return ;
+			return;
 		}
 		this.page = page;
 	}
+
 	public int getPageStart() { // 시작되는 페이지 수에 따라서 몇개씩 가져올지 결정해주는 함수
 		return (this.page -1) * perPageNum;
 	}
@@ -43,12 +43,5 @@ public class Criteira {
 		this.perPageNum = perPageNum;
 	}
 
-	public Criteira(int page, int perPageNum) {
-		super();
-		this.page = page;
-		this.perPageNum = perPageNum;
-	}
-	
-	
 	
 }

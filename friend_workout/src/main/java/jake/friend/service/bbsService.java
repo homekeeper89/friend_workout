@@ -12,4 +12,5 @@ public interface bbsService {
 	public void modify(bbsVO vo) throws Exception;
 	public List<bbsVO> listCriteria(Criteira cri) throws Exception;
 	public int listCountCriteria(Criteira cri) throws Exception;
+	public void register(bbsVO vo) throws Exception;
 }

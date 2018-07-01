@@ -35,12 +35,11 @@
     </hgroup>
   </div>
 </header>
-<!-- header end -->
-<button type="button" class="btn btn-info btn-lg" id="workingout">YourSelf</button><!--  modal 버튼 -->
 <!-- modal start --> 
 	<jsp:include page="../inc/upload-modal.jsp"/>
 <!-- modal end -->
-	<form role = "fomr" method = "post">
+<div class = "container">
+	<form role = "form" method = "post">
 		<div class = "box-body">
 			<div class = "form-group">
 			<label for= "exampleInputEmail1"> title</label>
@@ -56,9 +55,10 @@
 			</div>
 		</div>
 		<div class = "box-footer">
-			<button type = "submit" class = "btn btn-primary"> Submit</button>
+			<button type = "submit" class = "btn btn-primary regBtn"> Submit</button>
 		</div>
 	</form>
+	</div>
 
 
 
@@ -84,6 +84,12 @@ $(function(){
     $("#workingout").click(function(){
         $("#upload-modal").modal();
     });
+    var formObj = $("form[role = 'form']");
+	$(".regBtn").on("click", function(){
+		formObj.attr("action", "/bbs")
+		formObj.attr("method", "POST");
+		formObj.submit();
+	})
 });
 </script>
 

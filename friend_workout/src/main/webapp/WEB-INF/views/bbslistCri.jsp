@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session = "false"%>
 <html>
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
@@ -56,49 +55,59 @@
 	<main class="main-wrapper" id="container">
 	<div class="container">
 		<div>
-			<table class = "table tbale=bordered">
-			<tr>
-			<th style = "width:10px"> BNO </th>
-			<th> TITLE </th>
-			<th> WRITER </th>
-			<th> REGDATE </th>
-			<th style = "width:40px">VIEWCNT</th>
-			</tr>
-			<c:forEach items = "${list}" var = "boardVO">
-			<tr>
-			<td>${boardVO.b_seq}</td>
-			<td><a href = '/bbs/pages?b_seq=${boardVO.b_seq}'>${boardVO.b_title}</a></td>
-			<td>${boardVO.u_name}</td>
-			<td><fmt:formatDate pattern = "yyyy-MM-dd HH:mm" value = "${boardVO.b_regdate}"/></td>
-			<td><span class = "badge bg-red">${boardVO.viewcnt}</span></td>
-			</tr>
-			</c:forEach>
+		<h3> hello</h3>
+			<table class="table tbale=bordered">
+				<tr>
+					<th style="width: 10px">BNO</th>
+					<th>TITLE</th>
+					<th>WRITER</th>
+					<th>REGDATE</th>
+					<th style="width: 40px">VIEWCNT</th>
+				</tr>
+				<c:forEach items="${list}" var="boardVO">
+					<tr>
+						<td>${boardVO.b_seq}</td>
+						<td><a
+							href='/bbs/pages${pageMaker.makeQuery(pageMaker.cri.page)}&b_seq=${boardVO.b_seq}'>${boardVO.b_title}</a></td>
+						<td>${boardVO.u_name}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+								value="${boardVO.b_regdate}" /></td>
+						<td><span class="badge bg-red">${boardVO.viewcnt}</span></td>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
-		<div class = "text-center">
-			<ul class = "pagination">
-				<c:if test = "${pageMaker.prev}">
-				<li><a href = "bbs?page=${pageMaker.startPage-1}">&laquo;</a></li>
+		<div class="row">
+			<button type="submit" class="btn btn-primary regBtn">Register</button>
+		</div>
+		<div class="text-center">
+			<ul class="pagination">
+				<c:if test="${pageMaker.prev}">
+					<li><a href="bbs?page=${pageMaker.startPage-1}">&laquo;</a></li>
 				</c:if>
-				<c:forEach begin = "${pageMaker.startPage}" end = "${pageMaker.endPage}" var = "idx">
-				<li 
-					<c:out value = "${pageMaker.cri.page == idx?'class=active':''}"/>>
-					<!-- <a href = "bbs?page=${idx}">${idx}</a> 이게 오리지널인데 form 을 위해 바꿈 -->
-					<a href = "${idx}">${idx}</a>
-				</li>
+				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}"
+					var="idx">
+					<li
+						<c:out value = "${pageMaker.cri.page == idx?'class=active':''}"/>>
+						<!-- <a href = "bbs?page=${idx}">${idx}</a> 이게 오리지널인데 form 을 위해 바꿈 -->
+						<a href="${idx}">${idx}</a>
+					</li>
 				</c:forEach>
-				<c:if test = "${pageMaker.next && pageMaker.endPage > 0}">
-				<li> <a href = "bbs?page=${pageMaker.endPage+1}">&raquo;</a></li>
+				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					<li><a href="bbs?page=${pageMaker.endPage+1}">&raquo;</a></li>
 				</c:if>
 			</ul>
 		</div>
-		<form id = "jobForm">
-			<input type = "hidden" name = "page" value = ${pageMaker.cri.perPageNum}>
-			<input type = "hidden" name = "perPageNum" value = ${pageMaker.cri.perPageNum}>
+		<form role="form" action="modifyPage" method="post">
+			<input type="hidden" name="u_name" value="${login.u_name}"> 
+		</form>
+		<form id="jobForm">
+			<input type="hidden" name="page" value=${pageMaker.cri.perPageNum}>
+			<input type="hidden" name="perPageNum" value=${pageMaker.cri.perPageNum}>
 		</form>
 		<!--페이지 번호 클릭시 처리하는 자바스크립트 작성을 위함 -->
 	</div>
-</main>
+	</main>
 
 
 	<jsp:include page="../inc/footter.jsp"></jsp:include>
@@ -149,7 +158,12 @@
 				jobForm.attr("action", "/bbs").attr("method", "get");
 				jobForm.submit();
 			})
-			
+			var formObj = $("form[role = 'form']");
+			$(".regBtn").on("click", function(){
+				formObj.attr("action", "/pages")
+				formObj.attr("method", "GET");
+				formObj.submit();
+			})
 			
 		});
 	</script>

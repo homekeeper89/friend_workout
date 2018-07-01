@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ page session="false"%>
 <html>
 <head>
 <!-- <jsp:include page="../inc/link.html"/>  왜 안되는지 모르겠음-->
@@ -77,11 +76,19 @@
 		</div>
 
 		<div class="box-footer">
-			<button type="submit" class="btn btn-warning">Modify</button>
-			<button type="submit" class="btn btn-danger">Remove</button>
-			<button type="submit" class="btn btn-primary">List ALL</button>
+			<c:if test = "${boardVO.u_name==login.u_name}"> <!-- 글 작성자와 로그인한 사람이 같으면 -->
+			<button type="submit" class="btn btn-warning modifyBtn">Modify</button>
+			<button type="submit" class="btn btn-danger removeBtn">Remove</button>
+			</c:if>
+			<button type="submit" class="btn btn-primary goListBtn">Go List</button>
 		</div>
 	</div><!-- container -->
+	<form role = "form" action = "modifyPage" method = "post">
+		<input type = "hidden" name = "b_seq" value = "${boardVO.b_seq}">
+		<input type = "hidden" name = "page" value = "${cri.page}">
+		<input type = "hidden" name = "perPageNum" value = "${cri.perPageNum}">
+	</form>
+	<!-- 글에서 목록으로 넘어갈시 기존의 페이지로 가기 위함 -->
 	</main>
 
 
@@ -127,20 +134,21 @@
 			}
 			var formObj = $("form[role = 'form']");
 			console.log(formObj)
-			$(".btn-warning").on("click", function(){
+			$(".modifyBtn").on("click", function(){
 				formObj.attr("action", "/bbs/page");
 				formObj.attr("method", "GET");
 				formObj.submit();
 			})// 수정 버튼 누르면 수정으로
-			$(".btn-danger").on("click", function(){
+			$(".removeBtn").on("click", function(){
 				formObj.attr("action", "/bbs/pages");
 				formObj.attr("method", "delete");
 				formObj.submit();
 			})// 삭제 버튼 누르면 삭제로
-			$(".btn-primary").on("click", function(){
-				self.location = "/bbs";
-			}) // 조회버튼 누르면 조회하러
-			
+			$(".goListBtn").on("click", function(){
+				formObj.attr("method", "get");
+				formObj.attr("action", "/bbs");
+				formObj.submit();
+			})
 			
 		});
 	</script>

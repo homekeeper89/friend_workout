@@ -44,6 +44,10 @@ public class bbsServiceImpl implements bbsService{
 	public int listCountCriteria(Criteira cri) throws Exception {
 		return dao.countPaging(cri);
 	}
+	public void register(bbsVO vo) throws Exception {
+		dao.create(vo);
+		
+	}
 	
 	
 	
