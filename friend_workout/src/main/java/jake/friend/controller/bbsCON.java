@@ -66,15 +66,6 @@ public class bbsCON {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:/bbs";
 	} // 삭제를 위함인데 지금은 안될듯. DELETE 메서드가 안됨
-	
-	@RequestMapping(value = "/bbs/page", method = RequestMethod.GET)
-	public ModelAndView modify(int b_seq, @ModelAttribute("cri") Criteira cri, Model model) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("bbspageput");
-		mv.addObject("boardVO", service.read(b_seq));
-		return mv;
-	} // 수정하기 위해서 글로 넘어가는 애
-	
 	@RequestMapping(value = "/bbs/pages", method = RequestMethod.POST)
 	public String modifyPOST(bbsVO board, Criteira cri, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post.........." + board.toString());
@@ -84,6 +75,15 @@ public class bbsCON {
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:/bbs";
 	}// 수정하고 난 다음 수정버튼 누르면 작동 됨
+	
+	@RequestMapping(value = "/bbs/page", method = RequestMethod.GET)
+	public ModelAndView modify(int b_seq, @ModelAttribute("cri") Criteira cri, Model model) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("bbspageput");
+		mv.addObject("boardVO", service.read(b_seq));
+		return mv;
+	} // 수정하기 위해서 글로 넘어가는 애
+	
 	
 
 }
