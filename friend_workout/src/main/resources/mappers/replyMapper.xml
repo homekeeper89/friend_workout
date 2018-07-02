@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "jake.friend.mapper.ReplyMapper">
+	<select id = "list" resultType = "rep">
+	select * from tb_reply
+	where r_status = 0 and b_seq = #{b_seq}
+	order by r_seq desc
+	</select>
+	<insert id = "create">
+		insert into tb_reply(b_seq, r_content, u_name)
+		values(#{b_seq}, #{r_content}, #{u_name})
+	</insert>
+	<update id = "update">
+	update tb_reply set r_content = #{r_content}, updatedate = now()
+	where r_seq = #{r_seq}
+	</update>
+	
+	<update id = "delete"> <!-- 삭제지만 상태값을 변경함 -->
+	update tb_reply set r_status = 1 where r_seq = #{r_seq}
+	</update>
+	
+	<select id = "listPage" resultType = "rep">
+		select * from tb_reply where b_seq = #{b_seq} and r_status = 0
+		order by r_seq desc
+		limit #{cri.pageStart}, #{cri.perPageNum} 
+	</select>
+	<select id = "count" resultType="int">
+		select count(*) from tb_reply where b_seq = #{b_seq} and r_status = 0 
+	</select>
+	
+	
+
+
+
+</mapper>

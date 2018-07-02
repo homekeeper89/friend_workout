@@ -27,7 +27,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>httpMethodFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/*</url-pattern><!-- hidden 메서드 활용을 위해 추가함. -->
 	</filter-mapping>
 
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

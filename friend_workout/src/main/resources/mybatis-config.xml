@@ -8,5 +8,6 @@
 	<typeAlias alias="bbs" type = "jake.friend.domain.bbsVO"/>
 	<typeAlias alias="user" type = "jake.friend.domain.userVO"/>
 	<typeAlias alias="file" type = "jake.friend.domain.fileVO"/>
+	<typeAlias alias="rep" type = "jake.friend.domain.replyVO"/>
 	</typeAliases>
 </configuration>
