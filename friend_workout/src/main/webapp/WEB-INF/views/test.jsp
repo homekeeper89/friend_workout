@@ -108,7 +108,7 @@ $(function(){
     		success : function(res){
     			if(res == 'SUCCESS'){
     				alert("등록")
-    				getAllList(); // 등록후 목록을 불러오기 위함
+    				getAllList(); // 등록후 목록을 불러오기 위함 	
     			}
     		}
     	})

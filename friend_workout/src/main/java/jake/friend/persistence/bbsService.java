@@ -12,14 +12,5 @@ public class bbsService {
 	@Autowired
 	private bbsDAOImpl dao;
 	
-	@Transactional(value = "transactionManager") 
-	public void regist(bbsVO vo) throws Exception{
-		dao.create(vo);
-		String files = vo.getFiles();
-		if(files == null) {
-			return ;
-		}
-		dao.addAttach(files);
-	}
 
 }
