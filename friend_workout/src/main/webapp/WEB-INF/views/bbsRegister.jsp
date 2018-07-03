@@ -58,12 +58,7 @@
 			<button type = "submit" class = "btn btn-primary regBtn"> Submit</button>
 		</div>
 	</form>
-	</div>
-
-
-
-<jsp:include page="../inc/footter.jsp"></jsp:include>
-<!-- jQuery --> 
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script> 
 <script>window.jQuery || document.write('<script src="js/assets/jquery.min.js"><\/script>')</script> 

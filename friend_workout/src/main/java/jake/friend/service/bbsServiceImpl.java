@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import jake.friend.cri.Criteira;
 import jake.friend.domain.bbsVO;
@@ -14,6 +15,17 @@ public class bbsServiceImpl implements bbsService{
 
 	@Autowired
 	private bbsDAOImpl dao;
+	
+	@Override
+	@Transactional(value = "transactionManager") 
+	public void regist(bbsVO vo) throws Exception{
+		dao.filecreate(vo);
+		String files = vo.getFiles();
+		if(files == null) {
+			return ;
+		}
+		dao.addAttach(files);
+	}
 	
 	@Override
 	public List<bbsVO> listall() throws Exception {

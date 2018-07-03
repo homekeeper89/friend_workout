@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- footer -->
-
+<div class = "container">
 <footer class="footer">
   <h3>Stay connected with us</h3>
   <div class="container footer-bot">
@@ -54,5 +54,5 @@
     </div>
   </div>
 </footer>
-
+</div>
 <!-- footer --> 

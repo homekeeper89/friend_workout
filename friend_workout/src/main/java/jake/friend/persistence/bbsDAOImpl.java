@@ -30,9 +30,14 @@ public class bbsDAOImpl implements bbsDAO {
 	}
 	 	
 	@Override
-	public void create(bbsVO vo) throws Exception {
-		session.insert(namespace + ".create", vo);
+	public void create(bbsVO vo) throws Exception { // 이건 게시판 등록
+		session.insert(namespace + ".bcreate", vo);
 	}
+	
+	public void filecreate(bbsVO vo) throws Exception { // 이건 파일 업로드시 등록
+		session.insert(namespace + ".fcreate", vo);
+	}
+	
 	@Override
 	public bbsVO read(int b_seq) throws Exception {
 		return session.selectOne(namespace + ".read", b_seq);
