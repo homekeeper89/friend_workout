@@ -89,6 +89,39 @@
 		<input type = "hidden" name = "perPageNum" value = "${cri.perPageNum}">
 	</form>
 	<!-- 글에서 목록으로 넘어갈시 기존의 페이지로 가기 위함 -->
+	<!-- 댓글 작성을 위한 div -->
+	<div class = "row">
+		<div class = "col-md-12">
+			<div class = "box box-success">
+				<div class = "box-header">
+					<h3 class = "box-title">ADD New Reply</h3>
+				</div>
+				<div class = "box-body">
+					<label for = "repWriter">writer</label>
+					<input class = "form-control" type = "text" placeholder="USER Id"
+					id = "repWriter">
+					<label for = "repContent">Content</label>
+					<input class ="form-control" type = "text"
+					placeholder = "REPLY TEXT" id = "repContent">
+				</div>
+				<div class = "box-footer">
+					<button type = "submit" class = "btn btn-primary" id = "replyAddBtn">
+					ADD REPLY
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  ^ 댓글 작성을 위한 div -->
+	<!-- 페이징 처리를 위함 -->
+	<ul class = "timeline">
+	<li class = "time-label" id = "repliesDiv"><span class = "bg-green">ReplyList</span></li>
+	</ul>
+	<div class = "text-center">
+		<ul id = "pagination" class = "pagination pagination-sm no-margin">
+			
+		</ul>
+	</div>
 	</main>
 
 
@@ -121,6 +154,69 @@
 	<script src="/resources/js/gallery/main.js" type="text/javascript"></script>
 	<script src="/resources/js/jquery.nicescroll.min.js"
 		type="text/javascript"></script>
+	<script id = "template" type = "text/x-handlebars-template">
+	{{#each .}}
+	<li class = "replyLi" data-req = {{r_seq}}>
+		<i class = "fa fa-comments bg-blue"></i>
+			<div class = "timeline-item">
+				<span class = "time">
+				<i class = "fa fa-clock-o"></i>{{prettifyDate r_regdate}} </span>
+				<h3 class = "timeline-header"><strong>{{r_seq}}</strong> -{{u_name}}</h3>
+				<div class = "timeline-body">{{replytext}}</div>
+				<div class = "timeline-footer">
+					<a class ="btn btn-primary btn-xs"
+					data-toggle = "modal" data-target="#modifyModal">Modify</a>
+				</div>
+			</div>
+	</li>
+	{{/each}}
+	</script>
+	<script>
+		Handlebars.registerHelper("prettifyDate", function(timeValue){
+			var dateObj = new Date(timeValue);
+			var year = dateObj.getFullYear();
+			var month = dateObj.getMonth() + 1;
+			var date = dateObj.getDate();
+			return year + "/"+month+"/"+date;
+		});
+		var printData = function(replyArr, target, templateObj){
+			var template = Handlebars.compile(templateObj.html());
+			var html = template(replyArr);
+			$('.replyLi').remove();
+			target.after(html);
+		}
+		var b_seq = ${boardVO.b_seq};
+		var replyPage = 1;
+		function getPage(pageInfo){
+			$.getJSON(pageInfo, function(data){
+				printData(data.list, $("#repliesDiv"), $('#template'));
+				printPaging(data.pageMaker, $(".pagination"));
+				$("#modifyModal").modal("hide");
+			})
+		}
+		
+		var printPaging = function(pageMaker, target){
+			var str = "";
+			if(pageMaker.prev){
+				str += "<li><a href ='"+(pageMaker.startPage-1)+"'> << </a></li>";
+			}
+			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++){
+				var strClass = pageMaker.cri.page==i?'class=active':'';
+				str+="<li "+strClass+"><a href ='"+i+"'>"+i+"</a></li>";
+			}
+			if(pageMaker.next){
+				str+="<li><a href = '"+(pageMaker.endPage+1)+"'> >> </a></li>";
+			}
+			target.html(str);	
+		}
+		$("#repliesDiv").on("click", function(){
+			if($(".timeline li").size() > 1){
+				return;
+			}
+			getPage("/rep/" + b_seq + "/1");
+		})
+	</script>
+	
 	<script>
 		$(function() {
 			$("#workingout").click(function() {

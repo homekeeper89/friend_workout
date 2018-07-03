@@ -50,8 +50,33 @@
         </div>
         <button id = "replyAddBtn"> ADD REPLY</button>
     </div>
+    <div id = "modDiv" style = "display: none;">
+    	<div class = "modal-title"></div>
+    	<div>
+    	<input type = "text" id = "r_content">
+    	</div>
+    	<div>
+    	<button type = "button" id = "replyModBtn">Modify</button>
+    	<button type = "button" id = "replyDelBtn">Delete</button>
+    	<button type = "button" id = "closeBtn">close</button>
+    	</div>
+    </div>
+    <ul class = "pagination">
+    </ul>
     </main>
-
+<style>
+#modDiv{
+width:300px;
+height:100px;
+background-color:gray;
+position:absolute;
+top:50%;
+left:50%;
+margin-top:-50px;
+margin-left:-150px;
+padding:10px;
+z-index:1000;}
+</style>
 
 <!-- Image Gallery --> 
 <!-- jQuery --> 
@@ -76,6 +101,7 @@ $(function(){
         $("#upload-modal").modal();
     });
     var b_seq = 323;
+    getPageList(1); // 처음 동작시 1페이지 가져오도록
     function getAllList(){
         $.getJSON("/rep/" + b_seq, function(data){
         	var str = "";
@@ -84,7 +110,7 @@ $(function(){
         	$(data).each(
         		function(){
         			str += "<li data-rseq='"+this.r_seq+"' class ='replyLi'>"
-        			+ this.r_seq + ":" +this.r_content +"</li>";
+        			+ this.r_seq + ":" +this.r_content +"<button>수정</button></li>";
         		});
         	$("#replies").html(str);
         	
@@ -113,8 +139,96 @@ $(function(){
     		}
     	})
     }) // #replyAddBtn
+    
+    $('#replies').on('click', '.replyLi button', function(){
+    	var reply = $(this).parent();
+    	var r_seq = reply.attr("data-rseq");
+    	var r_content = reply.text();
+    	alert(r_seq + ":" + r_content);
+    	$('.modal-title').html(r_seq);
+    	$('#r_content').val(r_content);
+    	$('#modDiv').show('slow');
+    });
     var u_name = $("#u_name").val();
     var r_content = $("#r_content").val();
+    $('#replyDelBtn').on('click', function(){
+    	var r_seq = $('.modal-title').html();
+    	var r_content = $('#r_content').val();
+    	$.ajax({
+    		type : 'delete',
+    		url : '/rep/' + r_seq,
+    		headers :{
+    			"Content-Type" : "application/json",
+    			"X-HTTP-Method-Override" : "DELETE"
+    		},
+    		dataType :"text",
+    		success :function(res){
+    			console.log("res " + res);
+    			if(res == 'SUCCESS'){
+    				alert('삭제 완료');
+    				$('#modDiv').hide('slow');
+    				getAllList();
+    			}
+    		}
+    	})
+    }); // delete Btn
+    
+    $('#replyModBtn').on('click', function(){
+    	var r_content = $('#r_content').val();
+    	var r_seq = $('.modal-title').html();
+    	$.ajax({
+    		type:'put',
+    		url:'/rep/' + r_seq,
+    		headers:{
+    			"Content-Type" : "application/json",
+    			"X-HTTP-Method-Override" : "PUT"
+    		},
+    		data:JSON.stringify({r_content:r_content}),
+    		success:function(res){
+    			if(res == 'SUCCESS'){
+    				aler("yes mod")
+    				$('#modDiv').hide('slow');
+    				getPageList(replyPage)// 페이징 처리를 위함
+    			}
+    		}   		
+    	})	
+    }) // mod Btn
+    
+    function getPageList(page){
+    	$.getJSON("/rep/" + b_seq + "/" + page, function(data){
+    		console.log(data.list.length);
+    		var str = "";
+    		
+    		$(data.list).each(function(){
+    			str += "<li data-rseq='" + this.r_seq + "'class = 'replyLi'>"
+    			+ this.r_seq + ":" +this.r_content + "<button>MOD</button></li>";
+    		});
+    		$("#replies").html(str);
+    		printPaging(data.pageMaker);
+    	})
+    } // getPageList
+    
+    function printPaging(pageMaker){
+    	var str = "";
+    	if(pageMaker.prev){
+    		str += "<li><a href = '" + (pageMaker.startPage-1) +"'> << </a></li>";
+    	}
+    	for (var i = pageMaker.startPage, len = pageMaker.endPage; i<=len; i++){
+    		var strClass = pageMaker.cri.page == i?'class=active':'';
+    		str+= "<li "+strClass+"><a href = '"+i+"'>"+i+"</a></li>";
+    	}
+    	if(pageMaker.next){
+    		str += "<li><a href ='" + (pageMaker.endPage+1)+"'> >> </a></li>";
+    	}
+    	$('.pagination').html(str);
+    }
+    // 페이지 번호 이벤트 출력
+    var replyPage = 1;
+    $('.pagination').on("click", "li a", function(){
+    	event.preventDefault();
+    	replyPage = $(this).attr("href");
+    	getPageList(replyPage);
+    });
     
 });
 </script>

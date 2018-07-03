@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import jake.friend.domain.bbsVO;
-import jake.friend.persistence.bbsService;
+import jake.friend.service.bbsService;
 import jake.friend.util.uploadFileUtils;
 /* copyright by : homekeeper89@gmail.com
  * Controller about Upload function

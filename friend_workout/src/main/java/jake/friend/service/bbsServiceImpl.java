@@ -16,6 +16,7 @@ public class bbsServiceImpl implements bbsService{
 	@Autowired
 	private bbsDAOImpl dao;
 	
+	@Override
 	@Transactional(value = "transactionManager") 
 	public void regist(bbsVO vo) throws Exception{
 		dao.filecreate(vo);

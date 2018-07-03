@@ -17,6 +17,7 @@ public class replyServiceImpl implements replyService {
 
 	@Override
 	public void addReply(replyVO vo) throws Exception {
+		System.out.println(vo.toString());
 		dao.create(vo);
 
 	}
