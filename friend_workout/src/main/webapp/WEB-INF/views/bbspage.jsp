@@ -90,29 +90,32 @@
 	</form>
 	<!-- 글에서 목록으로 넘어갈시 기존의 페이지로 가기 위함 -->
 	<!-- 댓글 작성을 위한 div -->
+	<div class = "container">
 	<div class = "row">
 		<div class = "col-md-12">
 			<div class = "box box-success">
 				<div class = "box-header">
-					<h3 class = "box-title">ADD New Reply</h3>
+					<h3 class = "box-title">댓글남기기</h3>
 				</div>
 				<div class = "box-body">
-					<label for = "repWriter">writer</label>
+					<label for = "repWriter">작성자</label>
 					<input class = "form-control" type = "text" placeholder="USER Id"
-					id = "repWriter">
-					<label for = "repContent">Content</label>
+					id = "repWriter" value = "${login.u_name}">
+					<label for = "repContent">댓글 내용</label>
 					<input class ="form-control" type = "text"
 					placeholder = "REPLY TEXT" id = "repContent">
 				</div>
 				<div class = "box-footer">
 					<button type = "submit" class = "btn btn-primary" id = "replyAddBtn">
-					ADD REPLY
+					댓글 남기기
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
+	</div>
 	<!--  ^ 댓글 작성을 위한 div -->
+	<div class = "container">
 	<!-- 페이징 처리를 위함 -->
 	<ul class = "timeline">
 	<li class = "time-label" id = "repliesDiv"><span class = "bg-green">ReplyList</span></li>
@@ -122,16 +125,35 @@
 			
 		</ul>
 	</div>
+	</div>
 	</main>
-
+<!--  modal 은 무조건 위치 고정을 위해 제일 아래에 기입하자-->
+	<div id = "modifyModal" class = "modal modal-primary fade" role = "dialog">
+		<div class = "modal-dialog">
+			<div class = "modal-content">
+				<div class = "modal-header">
+					<button type = "button" class = "close" data-dismiss = "modal">&times;</button>
+					<h4 class = "modal-title"></h4>
+				</div>
+				<div class = "modal-body" data-req>
+					<input type = "hidden" id = "replyuser" class = "form-control">
+					<p><input type = "text" id = "replytext" class = "form-control"></p>
+				</div>
+				<div class = "modal-footer">
+					<button type = "button" class = "btn btn-info" id = "replyModBtn">Mod</button>
+					<button type = "button" class = "btn btn-danger" id = "replyDelBtn">delete</button>
+					<button type = "button" class = "btn btn-default" data-dismiss="modal">Close</button>					
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<jsp:include page="../inc/footter.jsp"></jsp:include>
 
 	<!-- jQuery -->
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-	<script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+		<script>
 		window.jQuery
 				|| document
 						.write('<script src="js/assets/jquery.min.js"><\/script>')
@@ -154,69 +176,36 @@
 	<script src="/resources/js/gallery/main.js" type="text/javascript"></script>
 	<script src="/resources/js/jquery.nicescroll.min.js"
 		type="text/javascript"></script>
+
 	<script id = "template" type = "text/x-handlebars-template">
 	{{#each .}}
 	<li class = "replyLi" data-req = {{r_seq}}>
-		<i class = "fa fa-comments bg-blue"></i>
-			<div class = "timeline-item">
-				<span class = "time">
-				<i class = "fa fa-clock-o"></i>{{prettifyDate r_regdate}} </span>
-				<h3 class = "timeline-header"><strong>{{r_seq}}</strong> -{{u_name}}</h3>
-				<div class = "timeline-body">{{replytext}}</div>
+		<div class = "timeline-item">
+                <div class = "row">
+                <div class = "col-xs-4">
+                <span class = "time">
+				<i class = "fa fa-clock-o"></i>{{prettifyDate r_regdate}} </span>    
+                </div>
+                </div>
+                <div class ="row">
+                <div class = "col-xs-4">
+                 <h5>작성자 : <a class = "timeline-header">{{u_name}}</a></h5>
+                </div>
+                    <div class = "col-xs-6">
+                <div class = "timeline-body"><h3><i class = "fa fa-comments bg-blue"></i>{{r_content}}</h3></div>
+                    <div class = "row">
+                <div class = "col-xs-8"></div>
 				<div class = "timeline-footer">
 					<a class ="btn btn-primary btn-xs"
 					data-toggle = "modal" data-target="#modifyModal">Modify</a>
+                </div>
+                </div>
+                    </div>
 				</div>
 			</div>
 	</li>
 	{{/each}}
 	</script>
-	<script>
-		Handlebars.registerHelper("prettifyDate", function(timeValue){
-			var dateObj = new Date(timeValue);
-			var year = dateObj.getFullYear();
-			var month = dateObj.getMonth() + 1;
-			var date = dateObj.getDate();
-			return year + "/"+month+"/"+date;
-		});
-		var printData = function(replyArr, target, templateObj){
-			var template = Handlebars.compile(templateObj.html());
-			var html = template(replyArr);
-			$('.replyLi').remove();
-			target.after(html);
-		}
-		var b_seq = ${boardVO.b_seq};
-		var replyPage = 1;
-		function getPage(pageInfo){
-			$.getJSON(pageInfo, function(data){
-				printData(data.list, $("#repliesDiv"), $('#template'));
-				printPaging(data.pageMaker, $(".pagination"));
-				$("#modifyModal").modal("hide");
-			})
-		}
-		
-		var printPaging = function(pageMaker, target){
-			var str = "";
-			if(pageMaker.prev){
-				str += "<li><a href ='"+(pageMaker.startPage-1)+"'> << </a></li>";
-			}
-			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++){
-				var strClass = pageMaker.cri.page==i?'class=active':'';
-				str+="<li "+strClass+"><a href ='"+i+"'>"+i+"</a></li>";
-			}
-			if(pageMaker.next){
-				str+="<li><a href = '"+(pageMaker.endPage+1)+"'> >> </a></li>";
-			}
-			target.html(str);	
-		}
-		$("#repliesDiv").on("click", function(){
-			if($(".timeline li").size() > 1){
-				return;
-			}
-			getPage("/rep/" + b_seq + "/1");
-		})
-	</script>
-	
 	<script>
 		$(function() {
 			$("#workingout").click(function() {
@@ -245,10 +234,140 @@
 				formObj.attr("action", "/bbs");
 				formObj.submit();
 			})
+			Handlebars.registerHelper("prettifyDate", function(timeValue){
+				var dateObj = new Date(timeValue);
+				var year = dateObj.getFullYear();
+				var month = dateObj.getMonth() + 1;
+				var date = dateObj.getDate();
+				return year + "/"+month+"/"+date;
+			});
+			var printData = function(replyArr, target, templateObj){
+				var template = Handlebars.compile(templateObj.html());
+				var html = template(replyArr);
+				$('.replyLi').remove();
+				target.after(html);
+			}
+			var b_seq = ${boardVO.b_seq};
+			var replyPage = 1;
+			function getPage(pageInfo){
+				$.getJSON(pageInfo, function(data){
+					printData(data.list, $("#repliesDiv"), $('#template'));
+					printPaging(data.pageMaker, $(".pagination"));
+					$("#modifyModal").modal("hide");
+				})
+			}
+			
+			var printPaging = function(pageMaker, target){
+				var str = "";
+				if(pageMaker.prev){
+					str += "<li><a href ='"+(pageMaker.startPage-1)+"'> << </a></li>";
+				}
+				for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++){
+					var strClass = pageMaker.cri.page==i?'class=active':'';
+					str+="<li "+strClass+"><a href ='"+i+"'>"+i+"</a></li>";
+				}
+				if(pageMaker.next){
+					str+="<li><a href = '"+(pageMaker.endPage+1)+"'> >> </a></li>";
+				}
+				target.html(str);	
+			}
+			$("#repliesDiv").on("click", function(){
+				if($(".timeline li").size() > 1){
+					return;
+				}
+				getPage("/rep/" + b_seq + "/1");
+			})
+			
+			$('.pagination').on('click', 'li a', function(){
+				event.preventDefault();
+				replyPage = $(this).attr("href");
+				getPage("/rep/"+b_seq+"/"+replyPage);
+			})
+			$("#replyAddBtn").on("click", function(){
+				if($("#repWriter").val() == "" || $("#repContent").val() == ""){
+					alert("로그인이 필요하거나 글 내용이 존재하지 않습니다.")
+					return;
+				}
+				var replyObj = $("#repWriter");
+				var replytextObj = $("#repContent");
+				var replyer = replyObj.val(); // 작성자 값 가져옴
+				var repText = replytextObj.val(); // 작성글 가져옴
+				$.ajax({
+					type : 'post',
+					url : '/rep/',
+					headers :{
+						"Content-Type" : "application/json",
+						"X-HTTP-Method-Override":"POST"},
+					dataType :"text",
+					data : JSON.stringify({b_seq:b_seq, u_name:replyer, r_content:repText}),
+					success : function(res){
+						console.log("res : " + res);
+						if(res == 'SUCCESS'){
+							alert("등록되었습니다")
+							replyPage = 1;
+							getPage("/rep/"+b_seq+"/"+replyPage);
+							replyObj.val("");
+							replytextObj.val();
+						}
+					}
+					
+				});
+			});
+			
+			$(".timeline").on("click", ".replyLi", function(event){
+				var reply = $(this);
+				if ("${login.u_name}" != reply.find(".timeline-header").text()){
+					alert("수정권한이 없습니다");
+					return ;
+				}
+				$("#replytext").val(reply.find(".timeline-body").text());
+				$(".modal-title").html(reply.attr("data-req"));
+			})
+			
+			$("#replyModBtn").on("click", function(){
+				var r_seq = $(".modal-title").html();
+				var replytext = $("#replytext").val();
+				$.ajax({
+					type : 'put',
+					url:'/rep/'+r_seq,
+					headers:{
+						"Content-Type":"application/json",
+						"X-HTTP-Method-Override":"PUT"},
+					data:JSON.stringify({r_content:replytext}),
+					dataType:'text',
+					success:function(res){
+						console.log("res" + res);
+						if(res == 'SUCCESS'){
+							alert("수정")	
+							getPage("/rep/"+ b_seq+"/"+replyPage);
+						}
+					}
+				})
+			});
+			
+		$("#replyDelBtn").on("click", function(){
+			var r_seq = $('.modal-title').html();
+			var replytext = $("#replytext").val();
+			$.ajax({
+				type:'delete',
+				url:'/rep/'+r_seq,
+				headers:{
+					"Content-type":"application/json",
+					"X-HTTP-Method-Override":"DELETE"
+				},
+				dataType:'text',
+				success:function(res){
+					console.log("res : " + res);
+					if(res == 'SUCCESS'){
+						alert("삭제")
+						getPage('/rep/'+b_seq+"/"+replyPage);
+					}
+				}
+				
+			})
+		})
 			
 		});
 	</script>
-
 </body>
-
 </html>
