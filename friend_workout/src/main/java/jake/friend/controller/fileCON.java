@@ -1,4 +1,4 @@
-zpackage jake.friend.controller;
+package jake.friend.controller;
 
 import java.io.File;
 import java.io.FileInputStream;

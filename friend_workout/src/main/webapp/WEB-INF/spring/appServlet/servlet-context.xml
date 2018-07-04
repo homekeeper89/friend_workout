@@ -58,8 +58,7 @@
 		<beans:property name="maxUploadSize" value="100000000" />
 	</beans:bean>
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<!-- <beans:constructor-arg value="C:\\friend\workingout"/>  -->
-		<beans:constructor-arg value = "\usr\upload"/>
+		<beans:constructor-arg value="C:\\friend\workingout"/>
 	</beans:bean>
 	<!--  file upload -->
 	<context:component-scan base-package="jake.friend.controller"/>

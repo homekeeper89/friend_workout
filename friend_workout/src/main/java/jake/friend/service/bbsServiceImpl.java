@@ -17,17 +17,6 @@ public class bbsServiceImpl implements bbsService{
 	private bbsDAOImpl dao;
 	
 	@Override
-	@Transactional(value = "transactionManager") 
-	public void regist(bbsVO vo) throws Exception{
-		dao.filecreate(vo);
-		String files = vo.getFiles();
-		if(files == null) {
-			return ;
-		}
-		dao.addAttach(files);
-	}
-	
-	@Override
 	public List<bbsVO> listall() throws Exception {
 		List<bbsVO> vo = dao.listAll(3);
 		return vo;
