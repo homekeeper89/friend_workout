@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import jake.friend.domain.bbsVO;
-import jake.friend.service.bbsService;
+import jake.friend.persistence.bbsServiceT;
 import jake.friend.util.uploadFileUtils;
 /* copyright by : homekeeper89@gmail.com
  * Controller about Upload function
@@ -22,7 +22,7 @@ public class uploadCON {
 	private static final Logger logger = LoggerFactory.getLogger(uploadCON.class);
 	
 	@Autowired
-	private bbsService bss;
+	private bbsServiceT bt;
 	
 	@Resource(name = "uploadPath") // sevelet-context에 등록되어 있음
 	private String uploadPath;
@@ -34,7 +34,7 @@ public class uploadCON {
 		//logger.info("after uploaddd " +path);
 		//logger.info("after " + vo.getU_name());
 		vo.setFiles(path);
-		bss.regist(vo);
+		bt.regist(vo);
 		return "redirect:" + "/";
 	}
 	// 파일 업로드 할 경우 작동되는 컨트롤러, 업로드가 성공하면 home으로 움지인다.

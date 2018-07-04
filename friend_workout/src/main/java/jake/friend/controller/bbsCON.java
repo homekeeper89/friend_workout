@@ -65,7 +65,7 @@ public class bbsCON {
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:/bbs";
-	} // 삭제를 위함인데 지금은 안될듯. DELETE 메서드가 안됨
+	} // 삭제를 위함
 	@RequestMapping(value = "/bbs/pages", method = RequestMethod.POST)
 	public String modifyPOST(bbsVO board, Criteira cri, RedirectAttributes rttr) throws Exception{
 		logger.info("mod post.........." + board.toString());

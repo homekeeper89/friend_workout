@@ -13,5 +13,4 @@ public interface bbsService {
 	public List<bbsVO> listCriteria(Criteira cri) throws Exception;
 	public int listCountCriteria(Criteira cri) throws Exception;
 	public void register(bbsVO vo) throws Exception;
-	public void regist(bbsVO vo) throws Exception; // 얘는 파일 업로드 용임
 }
