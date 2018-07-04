@@ -58,12 +58,16 @@
             </div>
         </div>
         <div class = "row">
-            <div class = "col-xs-8">
+            <div class = "col-xs-4">
                 <h2> 내일로 미뤄선 아무것도 못합니다.</h2><br>
                 <h2> 하루 한번, 운동전에 한장!</h2>
+                <h2> 꾸준히 운동하면 여러분도 가능합니다</h2>
             </div>
             <div class = "col-xs-4">
-                <img src="/resources/images/gallery/best-clothes.jpg" alt="" />
+                <img src="/resources/images/gallery/my_inbody.jpg" alt="" />
+            </div>
+            <div class = "col-xs-4">
+                <img src="/resources/images/gallery/inbody.jpg" alt="" />
             </div>
         </div>
     </div>
