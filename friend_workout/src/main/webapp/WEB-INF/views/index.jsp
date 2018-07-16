@@ -47,7 +47,7 @@
 <!-- modal end -->
 <main class="main-wrapper" id="container">
   <!-- image Gallery -->
-  <div class="wrapper">
+  <div class="container">
     <div class="">
       <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5 masonry">
       <c:forEach items="${fdata}" var="data" varStatus="cnt">

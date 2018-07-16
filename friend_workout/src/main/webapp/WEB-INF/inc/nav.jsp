@@ -35,5 +35,6 @@
 	</c:choose>
 	<li role="presentation"><a href="/mail">contact</a></li>
 	<li role="presentation"><a href="/bbs">Board</a></li>
+	<li role="presentation"><a href="/games">Mini-game</a></li>
 </ul>
 </nav>
