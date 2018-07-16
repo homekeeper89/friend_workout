@@ -34,6 +34,7 @@ public class HomeController {
 	@RequestMapping(value ="/test", method = RequestMethod.GET)
 	public void ajaxTest() {	
 	}
+	
 	@RequestMapping(value ="/games", method = RequestMethod.GET)
 	public void games() {	
 	}
